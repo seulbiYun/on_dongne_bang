@@ -6,19 +6,16 @@ public class MemberVO {
 	private String mId;
 	private String mPassword;
 	private String mName;
-	private int mTel;
+	private String mTel;
 	private String mEmail;
 	private Date mBirth;
-	private int mManager;
 	private int mSecession;
-	private int mUsertype;
 
 	public MemberVO() {
 		super();
 	}
 
-	public MemberVO(String mId, String mPassword, String mName, int mTel, String mEmail, Date mBirth, int mManager,
-			int mSecession, int mUsertype) {
+	public MemberVO(String mId, String mPassword, String mName, String mTel, String mEmail, Date mBirth, int mSecession) {
 		super();
 		this.mId = mId;
 		this.mPassword = mPassword;
@@ -26,9 +23,7 @@ public class MemberVO {
 		this.mTel = mTel;
 		this.mEmail = mEmail;
 		this.mBirth = mBirth;
-		this.mManager = mManager;
 		this.mSecession = mSecession;
-		this.mUsertype = mUsertype;
 	}
 
 	public String getmId() {
@@ -55,11 +50,11 @@ public class MemberVO {
 		this.mName = mName;
 	}
 
-	public int getmTel() {
+	public String getmTel() {
 		return mTel;
 	}
 
-	public void setmTel(int mTel) {
+	public void setmTel(String mTel) {
 		this.mTel = mTel;
 	}
 
@@ -79,14 +74,6 @@ public class MemberVO {
 		this.mBirth = mBirth;
 	}
 
-	public int getmManager() {
-		return mManager;
-	}
-
-	public void setmManager(int mManager) {
-		this.mManager = mManager;
-	}
-
 	public int getmSecession() {
 		return mSecession;
 	}
@@ -95,19 +82,10 @@ public class MemberVO {
 		this.mSecession = mSecession;
 	}
 
-	public int getmUsertype() {
-		return mUsertype;
-	}
-
-	public void setmUsertype(int mUsertype) {
-		this.mUsertype = mUsertype;
-	}
-
 	@Override
 	public String toString() {
 		return "MemberVO [mId=" + mId + ", mPassword=" + mPassword + ", mName=" + mName + ", mTel=" + mTel + ", mEmail="
-				+ mEmail + ", mBirth=" + mBirth + ", mManager=" + mManager + ", mSecession=" + mSecession
-				+ ", mUsertype=" + mUsertype + "]";
+				+ mEmail + ", mBirth=" + mBirth + ", mSecession=" + mSecession + "]";
 	}
 
 }
