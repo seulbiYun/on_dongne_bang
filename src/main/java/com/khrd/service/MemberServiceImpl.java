@@ -21,4 +21,14 @@ public class MemberServiceImpl implements MemberService {
 		dao.memberRegister(vo);
 	}
 
+	@Override
+	public void modify(MemberVO vo) {
+		dao.modify(vo);
+	}
+
+	@Override
+	public void modifyBySecession(String mId) {
+		dao.modifyBySecession(mId);
+	}
+
 }

@@ -9,4 +9,8 @@ public interface MemberDAO {
 	//REGISTER----------------------------
 	public void memberRegister(MemberVO vo);
 	
+	// modify-----------------------------
+	public void modify(MemberVO vo);
+	public void modifyBySecession(String mId);
+	
 }

@@ -26,7 +26,6 @@
 	}
 	
 	body{
-		overflow: hidden;
 		background: #FBEED7;
 		width: 100%;
 		height: 100%;
@@ -98,10 +97,13 @@
 		height: 100%;
 	}
 	#mainBody_footer section{
-		height: 80%;
+		height: 100%;
 	}
-	#mainBody_footer footer{
+	footer{
 		height: 20%;
+		background-color: #FFBA5A;
+		width: 100%;
+		clear: both;
 	}
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>

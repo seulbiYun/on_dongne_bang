@@ -20,4 +20,18 @@
 		select * from member where m_id = #{mId}
 	</select>
 	
+	<update id="modify">
+		update member
+		set m_password = #{mPassword},
+			m_name = #{mName},
+			m_tel = #{mTel},
+			m_email = #{mEmail}
+		where m_id = #{mId}	
+	</update>
+	
+	<update id="modifyBySecession">
+		update member 
+		set m_secession = 1
+		where m_id = #{mId}
+	</update>
 </mapper>

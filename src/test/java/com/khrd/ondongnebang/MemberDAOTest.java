@@ -26,13 +26,23 @@ public class MemberDAOTest {
 	public void testMemberById() {
 		dao.memberById("bangmana");
 	}
-	@Test
+	//@Test
 	public void testMemberRegister() throws Exception {
 		String date_s = "1995-10-18";
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		Date date = sdf.parse(date_s);
 		MemberVO vo = new MemberVO("user1", "test", "Name", "01010041004", "email@email.com", date, 0);
 		dao.memberRegister(vo);
+	}
+	
+	@Test
+	public void testModify() {
+		MemberVO vo = new MemberVO();
+		vo.setmPassword("password");
+		vo.setmName("newName");
+		vo.setmTel("01033334444");
+		vo.setmEmail("email98@email.com");
+		dao.modify(vo);
 	}
 	
 }

@@ -8,4 +8,8 @@ public interface MemberService {
 	
 	//REGISTER----------------------------
 	public void memberRegister(MemberVO vo);
+	
+	// modify-----------------------------
+	public void modify(MemberVO vo);
+	public void modifyBySecession(String mId);
 }

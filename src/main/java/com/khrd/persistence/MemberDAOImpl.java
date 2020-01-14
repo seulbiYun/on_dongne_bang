@@ -23,4 +23,15 @@ public class MemberDAOImpl implements MemberDAO {
 		sqlSession.insert(namespace+".memberRegister", vo);
 	}
 
+	@Override
+	public void modify(MemberVO vo) {
+		sqlSession.update(namespace + ".modify", vo);
+		
+	}
+
+	@Override
+	public void modifyBySecession(String mId) {
+		sqlSession.update(namespace+".modifyBySecession", mId);
+	}
+
 }
