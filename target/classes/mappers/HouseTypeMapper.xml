@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mappers.HouseTypeMapper">
+	<resultMap type="HouseTypeVO" id="HTResult">
+		<id column="h_no" property="hNo"/>
+		<result column="h_type" property="hType"/>
+		<result column="h_address" property="hAddress"/>
+		<result column="h_elevator" property="hElevator"/>
+		<result column="h_parking" property="hParking"/>
+		<result column="h_floor" property="hFloor"/>
+		<collection property="dong" resultMap="mappers.DongMapper.DongResult"></collection>
+	</resultMap>
+</mapper>

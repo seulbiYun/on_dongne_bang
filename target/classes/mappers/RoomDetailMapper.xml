@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mappers.RoomDetailMapper">
+	<resultMap type="RoomDetailVO" id="RDResult">
+		<id column="rd_no" property="rdNo"/>
+		<result column="rd_floor" property="rdFloor"/>
+		<result column="rd_type" property="rdType"/>
+		<result column="rd_contract" property="rdContract"/>
+		<result column="rd_area" property="rdArea"/>
+		<result column="rd_adcost" property="rdAdcost"/>
+		<result column="rd_availabledate" property="rdAvailabledate"/>
+		<result column="rd_pet" property="rdPet"/>
+		<result column="rd_balcony" property="rdBalcony"/>
+		<result column="rd_heating" property="rdHeating"/>
+		<result column="rd_deposit" property="rdDeposit"/>
+		<result column="rd_monthly" property="rdMonthly"/>
+		<result column="rd_closet" property="rdCloset"/>
+		<result column="rd_shoecloset" property="rdShoecloset"/>
+		<result column="rd_aircon" property="rdAircon"/>
+		<result column="rd_washer" property="rdWasher"/>
+		<result column="rd_induction" property="rdInduction"/>
+		<result column="rd_doorlock" property="rdDoorlock"/>
+		<result column="rd_bed" property="rdBed"/>
+		<result column="rd_microwave" property="rdMicrowave"/>
+		<result column="rd_tv" property="rdTv"/>
+		<result column="rd_desk" property="rdDesk"/>
+		<result column="rd_refrigerator" property="rdRefrigerator"/>
+		<collection property="house" resultMap="mappers.HouseTypeMapper.HTResult"></collection>
+		<collection property="member" resultMap="mappers.MemberMapper.memberResult"></collection>
+	</resultMap>
+	
+	<select id="selectByRdNo" resultMap="RDResult"> <!-- 내가 올린 방 리스트 -->
+		select * from room_detail where rd_no = #{rdNo}
+	</select>	
+	
+	<insert id="RoomDetailRegister">
+		insert into room_detail values
+		(null,#{rdFloor},#{rdType},#{rdContract},#{rdArea},#{rdAdcost},#{rdAvailabledate},
+		#{rdPet},#{rdBalcony},#{rdHeating},#{rdDeposit},#{rdMonthly},#{rdCloset},
+		#{rdShoecloset},#{rdAircon},#{rdWasher},#{rdInduction},#{rdDoorlock},#{rdBed},
+		#{rdMicrowave},#{rdTv},#{rdDesk},#{rdRefrigerator},#{house},#{member})
+	</insert>
+	
+</mapper>

@@ -1,5 +1,7 @@
 package com.khrd.domain;
 
+import java.util.Date;
+
 public class RoomDetailVO {
 	private int rdNo;
 	private int rdFloor;// 층수
@@ -7,7 +9,7 @@ public class RoomDetailVO {
 	private String rdContract;// 계약타입
 	private String rdArea;// 방면적
 	private int rdAdcost;// 관리비
-	private int rdAvailabledate;// 입주 가능일
+	private Date rdAvailabledate;// 입주 가능일
 	private int rdPet;// 반려동물
 	private int rdBalcony;// 발코니
 	private String rdHeating;// 난방종류
@@ -32,7 +34,7 @@ public class RoomDetailVO {
 	}
 
 	public RoomDetailVO(int rdNo, int rdFloor, int rdType, String rdContract, String rdArea, int rdAdcost,
-			int rdAvailabledate, int rdPet, int rdBalcony, String rdHeating, int rdDeposit, int rdMonthly, int rdCloset,
+			Date rdAvailabledate, int rdPet, int rdBalcony, String rdHeating, int rdDeposit, int rdMonthly, int rdCloset,
 			int rdShoecloset, int rdAircon, int rdWasher, int rdInduction, int rdDoorlock, int rdBed, int rdMicrowave,
 			int rdTv, int rdDesk, int rdRefrigerator, HouseTypeVO house, MemberVO member) {
 		super();
@@ -111,11 +113,11 @@ public class RoomDetailVO {
 		this.rdAdcost = rdAdcost;
 	}
 
-	public int getRdAvailabledate() {
+	public Date getRdAvailabledate() {
 		return rdAvailabledate;
 	}
 
-	public void setRdAvailabledate(int rdAvailabledate) {
+	public void setRdAvailabledate(Date rdAvailabledate) {
 		this.rdAvailabledate = rdAvailabledate;
 	}
 

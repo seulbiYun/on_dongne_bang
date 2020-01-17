@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mappers.GuMapper">
+	<resultMap type="GuVO" id="GuResult">
+		<id column="g_no" property="gNo"/>
+		<result column="g_name" property="gName"/>
+		<collection property="si" resultMap="mappers.SiMapper.SiResult"></collection>
+	</resultMap>
+</mapper>
