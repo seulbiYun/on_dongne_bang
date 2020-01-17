@@ -29,16 +29,22 @@
 		<collection property="member" resultMap="mappers.MemberMapper.memberResult"></collection>
 	</resultMap>
 	
-	<select id="selectByRdNo" resultMap="RDResult"> <!-- 내가 올린 방 리스트 -->
-		select * from room_detail where rd_no = #{rdNo}
+	<select id="selectByMemberId" resultMap="RDResult"> <!-- 내가 올린 방 리스트 -->
+		select * from room_detail where m_id = #{member}
 	</select>	
 	
-	<insert id="RoomDetailRegister">
+	<select id="readByRdNo" resultMap="RDResult"><!-- 방 상세보기 -->
+		select * from room_detail where rd_no = #{rdNo}
+	</select>
+	
+	<insert id="RoomDetailRegister"> <!-- 빈방 추가 -->
 		insert into room_detail values
 		(null,#{rdFloor},#{rdType},#{rdContract},#{rdArea},#{rdAdcost},#{rdAvailabledate},
 		#{rdPet},#{rdBalcony},#{rdHeating},#{rdDeposit},#{rdMonthly},#{rdCloset},
 		#{rdShoecloset},#{rdAircon},#{rdWasher},#{rdInduction},#{rdDoorlock},#{rdBed},
 		#{rdMicrowave},#{rdTv},#{rdDesk},#{rdRefrigerator},#{house},#{member})
 	</insert>
+	
+
 	
 </mapper>
