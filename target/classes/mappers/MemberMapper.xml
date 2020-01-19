@@ -12,11 +12,15 @@
 	</resultMap>
 	
 	<insert id="memberRegister"><!-- member 가입 -->
-		insert into member (m_id,m_password,m_name,m_tel,m_email,m_birth,m_secession)
-		values (#{mId},#{mPassword},#{mName},#{mTel},#{mEmail},#{mBirth},#{mSecession})
+		insert into member (m_id,m_password,m_name,m_tel,m_email,m_birth)
+		values (#{mId},#{mPassword},#{mName},#{mTel},#{mEmail},#{mBirth})
 	</insert>
 	
 	<select id="memberById" resultMap="memberResult"><!-- member id로 사용자 정보 상세보기 -->
+		select * from member where m_id = #{mId}
+	</select>
+	
+	<select id="mIdChek" resultMap="memberResult">
 		select * from member where m_id = #{mId}
 	</select>
 	

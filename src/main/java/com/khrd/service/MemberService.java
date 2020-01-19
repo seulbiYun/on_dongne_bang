@@ -5,6 +5,7 @@ import com.khrd.domain.MemberVO;
 public interface MemberService {
 	//LIST--------------------------------
 	public MemberVO memberById(String mId);
+	public MemberVO mIdChek(String mId);
 	
 	//REGISTER----------------------------
 	public void memberRegister(MemberVO vo);

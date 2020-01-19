@@ -19,6 +19,11 @@ public class MemberDAOImpl implements MemberDAO {
 	}
 
 	@Override
+	public MemberVO mIdChek(String mId) {
+		return sqlSession.selectOne(namespace + ".mIdChek", mId);
+	}
+	
+	@Override
 	public void memberRegister(MemberVO vo) {
 		sqlSession.insert(namespace+".memberRegister", vo);
 	}
@@ -33,5 +38,7 @@ public class MemberDAOImpl implements MemberDAO {
 	public void modifyBySecession(String mId) {
 		sqlSession.update(namespace+".modifyBySecession", mId);
 	}
+
+	
 
 }
