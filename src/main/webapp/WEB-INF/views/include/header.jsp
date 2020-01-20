@@ -7,6 +7,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link href="https://fonts.googleapis.com/css?family=Ubuntu&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic+Coding&display=swap" rel="stylesheet">
 <style>
 	*{
 		margin: 0;
@@ -23,6 +25,8 @@
 	
 	html{
 		height: 100%;
+		font-family: 'Ubuntu', sans-serif;
+		font-family: 'Nanum Gothic Coding', monospace;
 	}
 	
 	body{
@@ -55,7 +59,7 @@
 	
 	header #mainTitle h1{
 		position: absolute;
-		right: -305px;
+		right: -247px;
 		top:10px;
 		font-size:4em;
 		color:#FBEED7;
@@ -89,7 +93,8 @@
 	
 	header #loginout p a{
 		color:#FF7657;
-		line-height: 15px;
+		line-height: 17px;
+		font-size: 14px;
 	}
 	
 	#footer{
@@ -161,10 +166,17 @@
 		<h1><span id = "titleOn">ON</span><br><span style="color:#FF7657" id = "dongne">&emsp;&emsp;&emsp;&nbsp;&nbsp;DONGNE</span><br> BANG</h1>
 	</div>
 	<div id = "loginout">
-		<p>
-			<a href = "${pageContext.request.contextPath}/login">로그인 &nbsp;</a>
-			<span> </span>
-			<a href = "${pageContext.request.contextPath}/member/register">&nbsp; 회원가입</a>
+		<p>	
+			<c:if test="${Auth == null }">
+				<a href = "${pageContext.request.contextPath}/auth/login">로그인 &nbsp;</a>
+				<span> </span>
+				<a href = "${pageContext.request.contextPath}/member/register">&nbsp; 회원가입</a>
+			</c:if>
+			<c:if test="${Auth != null }">
+				<a href = "${pageContext.request.contextPath}/member/memberById?mId=${Auth }">&nbsp; ${Auth }님</a>
+				<span> </span>
+				<a href = "${pageContext.request.contextPath}/auth/logout">로그아웃 &nbsp;</a>
+			</c:if>
 		</p>
 	</div>
 	

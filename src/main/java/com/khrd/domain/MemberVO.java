@@ -8,14 +8,14 @@ public class MemberVO {
 	private String mName;
 	private String mTel;
 	private String mEmail;
-	private Date mBirth;
+	private String mBirth;
 	private int mSecession;
 
 	public MemberVO() {
 		super();
 	}
 
-	public MemberVO(String mId, String mPassword, String mName, String mTel, String mEmail, Date mBirth, int mSecession) {
+	public MemberVO(String mId, String mPassword, String mName, String mTel, String mEmail, String mBirth, int mSecession) {
 		super();
 		this.mId = mId;
 		this.mPassword = mPassword;
@@ -66,11 +66,11 @@ public class MemberVO {
 		this.mEmail = mEmail;
 	}
 
-	public Date getmBirth() {
+	public String getmBirth() {
 		return mBirth;
 	}
 
-	public void setmBirth(Date mBirth) {
+	public void setmBirth(String mBirth) {
 		this.mBirth = mBirth;
 	}
 

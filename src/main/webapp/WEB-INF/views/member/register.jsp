@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ include file="../include/header.jsp"%>
+<%@ include file="../include/subHeader.jsp"%>
 <style>
 #registTextBox {
 	overflow: hidden;
-	width: 50%;
+	width: 35%;
 	height: 20%;
 	margin: 65px auto;
 	padding-left: 20px;
@@ -70,11 +70,6 @@
 	text-align: center;
 }
 
-#complete{
-	margin: 0 auto;
-	width:40%;
-	display: none;
-}
 .err, .err2, .err3{
 	color:red;
 	font-size: 12px;
@@ -158,29 +153,34 @@
 				</p>
 				<p>
 					<label>생년월일</label>
-					<input type = "date" id = "mBrith">
+					<input type = "date" name = "mBirth">
 					<span class = "err">※생년월일을 입력하세요.※</span>
 					<span id = "err2"></span>
 				</p>
 				<p style = "text-align:center" class = "btns">
-					<button type = "button" id = "signUp">가입</button>
+					<input type = "submit" value = "가입" id = "signUp">
 					<button type = "button" id = "prev">이전</button>
 				</p>
 			</fieldset>
-			<div id = "complete">
-				<h2><span></span>님 회원가입 완료되었습니다.</h2>
-				<div class = "btns">
-					<input type = "submit" value = "로그인">
-				</div>
-			</div>
+			
 		</form>
 	</div>
 </section>
 <script>
 	$("#next").click(function(){
-			if(!$("input:checked[class='check']").is(":checked")){
-				alert("필수 동의에 체크하셔야 합니다.");
-			}else{
+			var c = $(".check");
+			
+			var isOk = true;
+			c.each(function(idx, item) {
+				if(item.checked == false) {
+					isOk = false;
+				}
+			});
+			
+			if(isOk == false) {
+				alert("필수 동의에 모두 체크하셔야 합니다.");
+				
+			} else {
 				$("#agree").css("display","none");
 				$(".registText").eq(0).removeClass("this");
 				$(".registText").eq(1).addClass("this");
@@ -213,85 +213,82 @@
 			}
 		})
 	})
-	
-	$("#signUp").click(function(){
-		var ok = $("#idOk").attr("data-chek");
-		if(ok == "false"){
-			alert("아이디 중복 확인이 필요합니다.");
-			return false;
-		}
-		
-//		var idReg = /^[a-z],[a-zA-Z0-9],{5,12}$/;
-		var id = $("input[name='mId']").val();
-		
-		if(id == ""){
-			$("input[name='mId']").next().next().css("display","block");
-			return false;
-		}else{
-			$("input[name='mId']").next().next().css("display","none");
-		}
-		
-//		var passReg = /^[a-zA-Z0-9],{8,15}$/;
-		var pass = $("input[name='mPassword']").val();
-		
-		if(pass == ""){
-			$("input[name='mPassword']").next().css("display","block");
-			return false;
-		}else{
-			$("input[name='mPassword']").next().next().css("display","none");
-		}
-		
-//		var nameReg = /^[가-힣],{2,5}$/;
-		var name = $("input[name='mName']").val();
-		
-		if(name == ""){
-			$("input[name='mName']").next().css("display","block");
-			return false;
-		}else{
-			$("input[name='mName']").next().next().css("display","none");
-		}
-		
-//		var telReg1 = /^[0-9],{4}$/;
-		var tel1 = $("input[name='mTel']").val();
-//		var telReg2 = /^[0-9],{4}$/;
-		
-		
-		if(tel1 == ""){
-			$("input[name='mTel']").next().css("display","block");
-			return false;
-		}else{
-			$("input[name='mTel']").next().next().css("display","none");
-		}
-		
-//		var emailReg = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i; 
-		var email = $("input[name='mEmail']").val();
-		
-		if(email == ""){
-			$("input[name='mEmail']").next().css("display","block");
-			return false;
-		}else{
-			$("input[name='mEmail']").next().next().css("display","none");
-		}
-		
-		var brith = $("#brith").val();
-		
-		if(brith == ""){
-			$("input[name='mBrith']").next().css("display","block");
-			return false;
-		}else{
-			$("input[name='mBrith']").next().next().css("display","none");
-		}
-				
-		$("fieldset").css("display","none");
-		$(".registText").eq(1).removeClass("this");
-		$(".registText").eq(2).addClass("this");
-		
-		var id = $("input[name='mId']").val();
-				
-		$("#complete h2 span").text(id);
-		
-		$("#complete").css("display","block");
+	$("form").submit(function(){
+		$("#signUp").click(function(){
+			var ok = $("#idOk").attr("data-chek");
+			if(ok == "false"){
+				alert("아이디 중복 확인이 필요합니다.");
+				return false;
+			}
+			
+//			var idReg = /^[a-z],[a-zA-Z0-9],{5,12}$/;
+			var id = $("input[name='mId']").val();
+			
+			if(id == ""){
+				$("input[name='mId']").next().next().css("display","block");
+				return false;
+			}else{
+				$("input[name='mId']").next().next().css("display","none");
+			}
+			
+//			var passReg = /^[a-zA-Z0-9],{8,15}$/;
+			var pass = $("input[name='mPassword']").val();
+			
+			if(pass == ""){
+				$("input[name='mPassword']").next().css("display","block");
+				return false;
+			}else{
+				$("input[name='mPassword']").next().next().css("display","none");
+			}
+			
+//			var nameReg = /^[가-힣],{2,5}$/;
+			var name = $("input[name='mName']").val();
+			
+			if(name == ""){
+				$("input[name='mName']").next().css("display","block");
+				return false;
+			}else{
+				$("input[name='mName']").next().next().css("display","none");
+			}
+			
+//			var telReg1 = /^[0-9],{4}$/;
+			var tel1 = $("input[name='mTel']").val();
+//			var telReg2 = /^[0-9],{4}$/;
+			
+			
+			if(tel1 == ""){
+				$("input[name='mTel']").next().css("display","block");
+				return false;
+			}else{
+				$("input[name='mTel']").next().next().css("display","none");
+			}
+			
+//			var emailReg = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i; 
+			var email = $("input[name='mEmail']").val();
+			
+			if(email == ""){
+				$("input[name='mEmail']").next().css("display","block");
+				return false;
+			}else{
+				$("input[name='mEmail']").next().next().css("display","none");
+			}
+			
+			var birth = $("input[name='mBirth']").val();
+			
+			if(birth == ""){
+				$("input[name='mBirth']").next().css("display","block");
+				return false;
+			}else{
+				$("input[name='mBirth']").next().next().css("display","none");
+			}
+					
+			$("fieldset").css("display","none");
+			$(".registText").eq(1).removeClass("this");
+			$(".registText").eq(2).addClass("this");
+			
+		})
 	})
+	
 	
 	$("#prev").click(function(){
 		location.href = "${pageContext.request.contextPath}/member/register";
@@ -302,4 +299,4 @@
 		location.href = "${pageContext.request.contextPath}/";
 	})
 </script>
-<%@ include file="../include/footer.jsp"%>
+<%@ include file="../include/subFooter.jsp"%>

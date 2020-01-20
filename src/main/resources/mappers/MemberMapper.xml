@@ -38,4 +38,9 @@
 		set m_secession = 1
 		where m_id = #{mId}
 	</update>
+	
+	<!-- Auth -->
+	<select id = "selectByIdAndPass" resultMap="memberResult">
+		select * from member where m_id = #{mId} and m_password = #{mPassword}
+	</select>
 </mapper>

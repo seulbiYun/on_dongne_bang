@@ -36,4 +36,9 @@ public class MemberServiceImpl implements MemberService {
 		dao.modifyBySecession(mId);
 	}
 
+	@Override
+	public MemberVO selectByIdAndPass(MemberVO vo) {
+		return dao.selectByIdAndPass(vo);
+	}
+
 }

@@ -29,9 +29,7 @@ public class MemberDAOTest {
 	//@Test
 	public void testMemberRegister() throws Exception {
 		String date_s = "1995-10-18";
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		Date date = sdf.parse(date_s);
-		MemberVO vo = new MemberVO("user1", "test", "Name", "01010041004", "email@email.com", date, 0);
+		MemberVO vo = new MemberVO("user1", "test", "Name", "01010041004", "email@email.com", date_s, 0);
 		dao.memberRegister(vo);
 	}
 	

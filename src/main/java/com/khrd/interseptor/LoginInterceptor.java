@@ -11,8 +11,9 @@ public class LoginInterceptor extends HandlerInterceptorAdapter{
 	@Override
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
 			ModelAndView modelAndView) throws Exception {
-		
+		System.out.println("================================LoginIntercepto========");
  		Object loginId = modelAndView.getModel().get("login");
+ 		System.out.println("================================loginId========"+loginId);
  		if(loginId != null) {
  			//session영역에 Auth키 만들어서 userid값을 넣음
  			request.getSession().setAttribute("Auth", loginId);

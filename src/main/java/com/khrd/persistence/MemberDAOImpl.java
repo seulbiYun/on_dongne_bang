@@ -1,5 +1,8 @@
 package com.khrd.persistence;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -37,6 +40,11 @@ public class MemberDAOImpl implements MemberDAO {
 	@Override
 	public void modifyBySecession(String mId) {
 		sqlSession.update(namespace+".modifyBySecession", mId);
+	}
+
+	@Override
+	public MemberVO selectByIdAndPass(MemberVO vo) {
+		return sqlSession.selectOne(namespace + ".selectByIdAndPass", vo);
 	}
 
 	
