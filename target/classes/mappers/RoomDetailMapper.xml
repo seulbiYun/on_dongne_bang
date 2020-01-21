@@ -30,7 +30,7 @@
 	</resultMap>
 	
 	<select id="selectByMemberId" resultMap="RDResult"> <!-- 내가 올린 방 리스트 -->
-		select * from room_detail where m_id = #{member}
+		select * from room_detail r left join `member` m on r.m_id = m.m_id where m.m_id = #{mId}
 	</select>	
 	
 	<select id="readByRdNo" resultMap="RDResult"><!-- 방 상세보기 -->

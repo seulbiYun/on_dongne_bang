@@ -82,6 +82,7 @@
 </style>
 <section>
 	<h1>${vo.mId }님</h1>
+	<input type = "hidden" value="${vo.mId }">
 	<ul>
 		<li>
 			<span class ="read">내정보</span>
@@ -120,11 +121,49 @@
 			<a href = "${pageContext.request.contextPath }/member/modifyBySecession?mId=${vo.mId}">회원탈퇴</a>
 		</p>
 	</div>	
+	
+	<div id = "myRoom" style = "display:none">
+		
+	</div>
+	
+	<div id = "likeRoom" style = "display:none">
+		
+	</div>
+	
 </section>
 <script>
 	$("ul li span").click(function(){
 		$("ul li span").removeClass("read");
 		$(this).addClass("read");
+		
+		var mId = $("section input[type='hidden']").val();
+		
+		$.ajax({
+			url:"/ondongnebang/rd/rdList",
+			type:"get",
+			data:{mId : mId},
+			dataType:"json",
+			success:function(res){
+				console.log(res);
+			}
+		})
+		
+		if($(this).text() == "내정보"){
+			$("#myOnBang").css("display","block");
+			$("#myRoom").css("display","none");
+			$("#likeRoom").css("display","none");
+		}
+		if($(this).text() == "내가 올린 방"){
+			$("#myRoom").css("display","block");
+			$("#myOnBang").css("display","none");
+			$("#likeRoom").css("display","none");
+		}
+		if($(this).text() == "찜한 방"){
+			$("#likeRoom").css("display","block");
+			$("#myOnBang").css("display","none");
+			$("#myRoom").css("display","none");
+		}
+				
 	})
 </script>
 <%@ include file="../include/subFooter.jsp"%>
