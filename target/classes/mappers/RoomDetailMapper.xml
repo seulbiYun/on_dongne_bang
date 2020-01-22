@@ -8,6 +8,7 @@
 		<result column="rd_contract" property="rdContract"/>
 		<result column="rd_area" property="rdArea"/>
 		<result column="rd_adcost" property="rdAdcost"/>
+		<result column="rd_adcostItem" property="rdAdcostItem"/>
 		<result column="rd_availabledate" property="rdAvailabledate"/>
 		<result column="rd_pet" property="rdPet"/>
 		<result column="rd_balcony" property="rdBalcony"/>
@@ -39,12 +40,12 @@
 	
 	<insert id="RoomDetailRegister"> <!-- 빈방 추가 -->
 		insert into room_detail values
-		(null,#{rdFloor},#{rdType},#{rdContract},#{rdArea},#{rdAdcost},#{rdAvailabledate},
+		(null,#{rdFloor},#{rdType},#{rdContract},#{rdArea},#{rdAdcost},#{rdAdcostItem},#{rdAvailabledate},
 		#{rdPet},#{rdBalcony},#{rdHeating},#{rdDeposit},#{rdMonthly},#{rdCloset},
 		#{rdShoecloset},#{rdAircon},#{rdWasher},#{rdInduction},#{rdDoorlock},#{rdBed},
 		#{rdMicrowave},#{rdTv},#{rdDesk},#{rdRefrigerator},#{house},#{member})
 	</insert>
 	
-
+	
 	
 </mapper>

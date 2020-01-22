@@ -30,40 +30,39 @@
 	}
 	
 	body{
-		background: #FBEED7;
 		width: 100%;
 		height: 100%;
 	}
 	
 	header{
 		width: 97.8%; 
-		border-bottom: 0.5px solid #ff7657;
+		border-bottom: 0.5px solid #f0ad92;
 		height: 10%;
 		padding:20px;
+		background: #f0ad92;
 	}
 	
 	header h1{
 		font-size:2.5em;
-		color:#ff7657;
+		color:white;
 		cursor: pointer;
 	}
 	
 	header #loginout p{
-		color:#FF7657;
+		color:#68745c;
 		font-size: 13px;
-		font-weight: bold;
 		text-align: right;
 	}
 	
 	header #loginout p span{
 		display: inline-block;
 		height: 15px;
-		border-left: 3px solid #FF7657;
+		border-left: 3px solid white;
 		border-radius: 2px;
 	}
 	
 	header #loginout p a{
-		color:#FF7657;
+		color:white;
 		line-height: 15px;
 	}
 	section{
@@ -84,6 +83,7 @@
 					<a href = "${pageContext.request.contextPath}/member/register">&nbsp; 회원가입</a>
 				</c:if>
 				<c:if test="${Auth != null }">
+					<a href = "${pageContext.request.contextPath }/rd/rdRegister?mId=${Auth}">&nbsp;방올리기&nbsp;</a>
 					<a href = "${pageContext.request.contextPath}/member/memberById?mId=${Auth }">&nbsp; ${Auth }님</a>
 					<span> </span>
 					<a href = "${pageContext.request.contextPath}/auth/logout">로그아웃 &nbsp;</a>

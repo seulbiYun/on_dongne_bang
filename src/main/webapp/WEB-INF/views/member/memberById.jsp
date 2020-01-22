@@ -6,6 +6,7 @@
 		width: 150px;
 		margin: 40px auto;
 		font-size: 30px;
+		color:#68745c;
 	}
 	
 	section ul {
@@ -24,10 +25,11 @@
 		font-weight: bold;
 		display: block;
 		cursor: pointer;
+		color:#68745c;
 	}
 	
 	.read{
-		border-bottom:4px solid #665c84;
+		border-bottom:4px solid #d8d1cb;
 		border-radius: 3px;
 		padding-bottom: 10px;
 	}
@@ -62,11 +64,11 @@
 	}
 	
 	#modify{
-		border:0.5px solid #ffba5a;
+		border:0.5px solid #68745;
 		padding: 8px;
 		border-radius: 5px;
-		background: #665c84;
-		color:#ffba5a;
+		background: #f0ad92; 
+		color:white;
 		font-weight: bold;
 		margin-top: 10px;
 		font-size: 16px;
@@ -74,7 +76,7 @@
 	
 	#secessionBtn a{
 		font-size: 13px;
-		color:#665c84;
+		color:#68745c;
 	}
 	#secessionBtn a:hover{
 		text-decoration: underline;
@@ -123,7 +125,27 @@
 	</div>	
 	
 	<div id = "myRoom" style = "display:none">
-		
+		<table>
+			<tr>
+				<th>NO</th>
+				<th>IMAGE</th>
+				<th>주소</th>
+				<th>계약 상황</th>
+			</tr>
+			<tr>
+				<td>${rdVo.rdNo }</td>
+				<td>
+					<img src="${pageContext.request.contextPath }/upload/displayFile?filename=">
+				</td>
+				<td>
+					${rdVo.house.dong.gu.si.sName } 
+					${rdVo.house.dong.gu.gName } 
+					${rdVo.house.dong.dName }
+					${rdVo.house.hAddress } 
+					${rdVo.rdFloor } 층
+				</td>
+			</tr>
+		</table>
 	</div>
 	
 	<div id = "likeRoom" style = "display:none">

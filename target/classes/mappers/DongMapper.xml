@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="mappers.DongMapper">
-	<resultMap type="DongVO" id="DongResult">
-		<id column="d_no" property="dNo"/>
-		<result column="d_name" property="dName"/>
-		<collection property="gu" resultMap="mappers.GuMapper.GuResult"></collection>
-	</resultMap>
-</mapper>

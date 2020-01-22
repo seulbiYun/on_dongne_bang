@@ -7,13 +7,12 @@ public class HouseTypeVO {
 	private int hElevator;
 	private int hParking;
 	private int hFloor;
-	private DongVO dong;
 
 	public HouseTypeVO() {
 		super();
 	}
 
-	public HouseTypeVO(int hNo, String hType, String hAddress, int hElevator, int hParking, int hFloor, DongVO dong) {
+	public HouseTypeVO(int hNo, String hType, String hAddress, int hElevator, int hParking, int hFloor) {
 		super();
 		this.hNo = hNo;
 		this.hType = hType;
@@ -21,7 +20,6 @@ public class HouseTypeVO {
 		this.hElevator = hElevator;
 		this.hParking = hParking;
 		this.hFloor = hFloor;
-		this.dong = dong;
 	}
 
 	public int gethNo() {
@@ -72,18 +70,10 @@ public class HouseTypeVO {
 		this.hFloor = hFloor;
 	}
 
-	public DongVO getDong() {
-		return dong;
-	}
-
-	public void setDong(DongVO dong) {
-		this.dong = dong;
-	}
-
 	@Override
 	public String toString() {
 		return "HouseTypeVO [hNo=" + hNo + ", hType=" + hType + ", hAddress=" + hAddress + ", hElevator=" + hElevator
-				+ ", hParking=" + hParking + ", hFloor=" + hFloor + ", dong=" + dong + "]";
+				+ ", hParking=" + hParking + ", hFloor=" + hFloor + "]";
 	}
 
 }

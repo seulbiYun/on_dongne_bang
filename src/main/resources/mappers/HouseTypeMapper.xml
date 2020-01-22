@@ -8,6 +8,5 @@
 		<result column="h_elevator" property="hElevator"/>
 		<result column="h_parking" property="hParking"/>
 		<result column="h_floor" property="hFloor"/>
-		<collection property="dong" resultMap="mappers.DongMapper.DongResult"></collection>
 	</resultMap>
 </mapper>

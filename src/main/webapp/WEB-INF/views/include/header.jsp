@@ -30,7 +30,6 @@
 	}
 	
 	body{
-		background: #FBEED7;
 		width: 100%;
 		height: 100%;
 	}
@@ -39,7 +38,7 @@
 		float: left;
 		width: 20%;
 		height: 100%;
-		background: #FF7657;
+		background: #f0ad92;
 		position: relative;
 	}
 	
@@ -48,7 +47,7 @@
 	}
 	
 	header #mainLogo a{
-		color:#FBEED7;
+		color:white;
 		font-size: 20px;
 		font-weight: bold;
 	}
@@ -59,16 +58,16 @@
 	
 	header #mainTitle h1{
 		position: absolute;
-		right: -247px;
+		right: -254px;
 		top:10px;
 		font-size:4em;
-		color:#FBEED7;
+		color:white;
 		line-height: 60px;
 	}
 	
 	header #mainTitle h1 #titleOn{
 		display: inline-block;
-		margin-left:85px; 
+		margin-left:70px; 
 	}
 	
 	header #loginout{
@@ -79,7 +78,6 @@
 		position: absolute;
 		right: -390%; 
 		top:-25px;
-		color:#FF7657;
 		font-size: 13px;
 		font-weight: bold;
 	}
@@ -87,32 +85,35 @@
 	header #loginout p span{
 		display: inline-block;
 		height: 15px;
-		border-left: 3px solid #FF7657;
+		border-left: 3px solid #68745c;
 		border-radius: 2px;
 	}
 	
 	header #loginout p a{
-		color:#FF7657;
+ 		color:#68745c;
+		color:black;
 		line-height: 17px;
 		font-size: 14px;
 	}
 	
-	#footer{
+/* 	#footer{
 		width: 100%;
-		height: 18%;
+		height: 17%;
 		position: absolute;
 		left: 0;
 		bottom: 0;
+		background: #AE585E;
 	}
 	
 	div#footerMenu{
 		width: 100%;
+		
 	}
 	div#footerMenu ul{
 		overflow: hidden;
-		width: 95%;
+		width: 100%;
 		margin: 0 auto;
-		padding: 10px;
+		padding:10px 0;
 	}
 	
 	div#footerMenu ul li{
@@ -124,8 +125,9 @@
 		display: block;
 		text-align: center;
 		font-size: 10px;
-		color:#FBEED7;
-		border-right: 0.5px solid #FBEED7;
+		color:#EBB8A4;
+		border-right: 0.5px solid #EBB8A4;
+		font-weight: bold;
 	}
 	
 	div#footerMenu ul li:last-child a{
@@ -133,7 +135,7 @@
 	}
 	
 	hr{
-		border:0.5px solid #FBEED7; 
+		border:0.5px solid #EBB8A4; 
 	}
 	
 	#footerText{
@@ -141,10 +143,10 @@
 	}
 	
 	#footerText p{
-		color:#FBEED7;
+		color:#EBB8A4;
 		font-size: 10px;
 		padding: 5px 0;
-	}
+	} */
 	
 	#mainBody_footer{
 		float:left;
@@ -163,7 +165,7 @@
 		<a href = "home">온방</a>
 	</div>
 	<div id = "mainTitle">
-		<h1><span id = "titleOn">ON</span><br><span style="color:#FF7657" id = "dongne">&emsp;&emsp;&emsp;&nbsp;&nbsp;DONGNE</span><br> BANG</h1>
+		<h1><span id = "titleOn">ON </span><br><span id = "dongne" style="color:#f0ad92">&emsp;&emsp;&emsp;&nbsp;&nbsp;DONGNE</span><br> BANG</h1>
 	</div>
 	<div id = "loginout">
 		<p>	
@@ -173,6 +175,7 @@
 				<a href = "${pageContext.request.contextPath}/member/register">&nbsp; 회원가입</a>
 			</c:if>
 			<c:if test="${Auth != null }">
+				<a href = "${pageContext.request.contextPath }/rd/rdRegister?mId=${Auth}">&nbsp;방 올리기&nbsp;</a>
 				<a href = "${pageContext.request.contextPath}/member/memberById?mId=${Auth }">&nbsp; ${Auth }님</a>
 				<span> </span>
 				<a href = "${pageContext.request.contextPath}/auth/logout">로그아웃 &nbsp;</a>
@@ -180,7 +183,7 @@
 		</p>
 	</div>
 	
-	<div id= "footer">
+	<!-- <div id= "footer">
 	<hr>
 		<div id = "footerMenu">
 			<ul>
@@ -203,8 +206,9 @@
 			<p>대표 : 윤슬비</p>
 			<p>주소 : 대구광역시 수성구 ○○동 ○○○ ○○○ ○○빌딩</p>
 			<p>고객센터 : ○○○)○○○-○○○○ &nbsp; 팩스 : ○○○-○○○-○○○○</p>
-			<p>사업자 번호 : ○○○-○○-○○○○○○ &nbsp; 이메일 : ○○○○○○○ @ email.com</p>
+			<p>사업자 번호 : ○○○-○○-○○○○○○ &nbsp;</p>
+			<p>이메일 : ○○○○○○○ @ email.com</p>
 		</div>
-	</div>
+	</div> -->
 </header>
 <div id="mainBody_footer">

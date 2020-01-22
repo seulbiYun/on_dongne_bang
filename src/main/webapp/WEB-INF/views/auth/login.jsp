@@ -5,11 +5,11 @@
 	fieldset{
 		width: 300px;
 		padding:20px;
-		border:1px solid #ff7657;
+		border:1px solid #d8d1cb;
 		margin: 150px auto 0;
 	}
 	fieldset legend{
-		color: #665c84;
+		color: #68745c;
 		font-weight: bold;
 		margin: 0 5px;
 	}
@@ -19,7 +19,7 @@
 	}
 	
 	fieldset p label{
-		color: #665c84;
+		color: #68745c;
 		font-weight: bold;
 		display: inline-block;
 		width: 100px;
@@ -30,11 +30,11 @@
 	}
 	
 	#btn input{
-		border:0.5px solid #ffba5a;
+		border:0.5px solid #68745;
 		padding: 8px;
 		border-radius: 5px;
-		background: #665c84; 
-		color:#ffba5a;
+		background: #f0ad92; 
+		color:white;
 		font-weight: bold;
 		margin-top: 10px;
 		font-size: 16px;

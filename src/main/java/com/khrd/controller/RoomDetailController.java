@@ -32,17 +32,40 @@ public class RoomDetailController {
 		
 		try {
 			System.out.println(mId);
-			List<RoomDetailVO> vo = service.selectByMemberId(mId);
-			System.out.println(vo);
-			entity = new ResponseEntity<List<RoomDetailVO>>(vo,HttpStatus.OK);
+			List<RoomDetailVO> rdVo = service.selectByMemberId(mId);
+			System.out.println(rdVo);
+			entity = new ResponseEntity<List<RoomDetailVO>>(rdVo,HttpStatus.OK);
 		}catch (Exception e) {
 			e.printStackTrace();
 			entity = new ResponseEntity<List<RoomDetailVO>>(HttpStatus.BAD_REQUEST);
 		}
 		
 		return entity;
-		
-		
 	}
+	
+	@RequestMapping(value = "rdRegister",method=RequestMethod.GET)
+	public void registGet() {
+		logger.info("--------------------rdRegister GET-----------------");
+	}
+	
+	@RequestMapping(value = "rdRegister",method = RequestMethod.POST)
+	public String registPost(RoomDetailVO rdVo) {
+		logger.info("--------------------rdRegister GET-----------------");
+		
+		service.RoomDetailRegister(rdVo);
+		
+		return "redirect:/rd/rdList?mId="+rdVo.getMember().getmId();
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 }
