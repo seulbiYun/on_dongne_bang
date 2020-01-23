@@ -8,5 +8,42 @@
 		<result column="h_elevator" property="hElevator"/>
 		<result column="h_parking" property="hParking"/>
 		<result column="h_floor" property="hFloor"/>
+		<result column="m_id" property="member"/>
 	</resultMap>
+	
+	<insert id="htRegister">
+		insert into house_type values (0,#{hType},#{hAddress},#{hElevator},#{hParking},#{hFloor},#{member})
+	</insert>
+	
+	<select id="htList" resultMap="HTResult">
+		select * from house_type order by h_no desc
+	</select>
+	
+	<select id="selectByHNo" resultMap="HTResult">
+		select * from house_type where h_no = #{hNo}
+	</select>
+	
+	<select id="htPage" resultMap="HTResult">
+		select * from house_type
+		order by h_no desc
+		limit #{page},#{perPage}
+	</select>
+	
+	<select id="htCri" resultMap="HTResult">
+		select * from house_type where m_id = #{member}
+		order by h_no desc
+		limit #{cri.pageStart},#{cri.perPageNum}
+	</select>
+	
+	<select id="htCount" resultType="int">
+		select count(h_no) from house_type where m_id =#{member}
+	</select>
+	
+<!-- 	<select id="htSearchCri" resultMap="HTResult">
+		select * from house_type
+		where h_address like CONCAT('%',#{keyword},'%')
+		order by h_no desc
+		limit #{pageStart},#{perPageNum}
+	</select> -->
+	
 </mapper>

@@ -175,7 +175,12 @@
 				<a href = "${pageContext.request.contextPath}/member/register">&nbsp; 회원가입</a>
 			</c:if>
 			<c:if test="${Auth != null }">
-				<a href = "${pageContext.request.contextPath }/rd/rdRegister?mId=${Auth}">&nbsp;방 올리기&nbsp;</a>
+				<a href = "${pageContext.request.contextPath }/ht/htRegister?mId=${Auth}">&nbsp;내 방 건물 추가&nbsp;</a>
+				<a href = "${pageContext.request.contextPath }/ht/htList">&nbsp;내 방 건물 리스트&nbsp;</a>
+				
+				<a href = "${pageContext.request.contextPath }/rd/rdRegister?mId=${Auth}">&nbsp;방 추가&nbsp;</a>				
+				<a href = "${pageContext.request.contextPath }/ht/htList">&nbsp;내 방 리스트&nbsp;</a>
+				
 				<a href = "${pageContext.request.contextPath}/member/memberById?mId=${Auth }">&nbsp; ${Auth }님</a>
 				<span> </span>
 				<a href = "${pageContext.request.contextPath}/auth/logout">로그아웃 &nbsp;</a>

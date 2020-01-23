@@ -6,13 +6,15 @@ public class HouseTypeVO {
 	private String hAddress;// 방주소
 	private int hElevator;
 	private int hParking;
-	private int hFloor;
-
+	private String hFloor;
+	private String member;
+	
 	public HouseTypeVO() {
 		super();
 	}
 
-	public HouseTypeVO(int hNo, String hType, String hAddress, int hElevator, int hParking, int hFloor) {
+	public HouseTypeVO(int hNo, String hType, String hAddress, int hElevator, int hParking, String hFloor,
+			String member) {
 		super();
 		this.hNo = hNo;
 		this.hType = hType;
@@ -20,6 +22,7 @@ public class HouseTypeVO {
 		this.hElevator = hElevator;
 		this.hParking = hParking;
 		this.hFloor = hFloor;
+		this.member = member;
 	}
 
 	public int gethNo() {
@@ -62,18 +65,25 @@ public class HouseTypeVO {
 		this.hParking = hParking;
 	}
 
-	public int gethFloor() {
+	public String gethFloor() {
 		return hFloor;
 	}
 
-	public void sethFloor(int hFloor) {
+	public void sethFloor(String hFloor) {
 		this.hFloor = hFloor;
+	}
+
+	public String getMember() {
+		return member;
+	}
+
+	public void setMember(String member) {
+		this.member = member;
 	}
 
 	@Override
 	public String toString() {
 		return "HouseTypeVO [hNo=" + hNo + ", hType=" + hType + ", hAddress=" + hAddress + ", hElevator=" + hElevator
-				+ ", hParking=" + hParking + ", hFloor=" + hFloor + "]";
+				+ ", hParking=" + hParking + ", hFloor=" + hFloor + ", member=" + member + "]";
 	}
-
 }

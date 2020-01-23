@@ -1,10 +1,56 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../include/subHeader.jsp"%>
-<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=7904280938241876642348cdc418d37c&libraries=services"></script>
 <section>
-	<h1>${Auth }님 방 올리기</h1>
+	<div id="htList">
+		<table>
+			<tr>
+				<th>NO</th>
+				<th>주소</th>
+				<th>건물 타입</th>
+				<th>층수</th>
+				<th>엘레베이터</th>
+				<th>주차장</th>
+			</tr>
+			<c:forEach var="ht" items="${htList }">
+				<tr>
+					<td>${ht.hNo }</td>
+					<td>${ht.hAddress }</td>
+					<td>${ht.hType }</td>
+					<td>${ht.hFloor }</td>
+					<c:if test="${ht.hElevator==0 }">
+						<td>없음</td>
+					</c:if>
+					<c:if test="${ht.hElevator==1 }">
+						<td>있음</td>
+					</c:if>
+					<c:if test="${ht.hParking==0 }">
+						<td>없음</td>
+					</c:if>
+					<c:if test="${ht.hParking==1 }">
+						<td>있음</td>
+					</c:if>
+				</tr>
+			</c:forEach>	
+		</table>
+		<ul class = "pagination">
+			<c:if test="${pageMaker.prev==true }">
+				<li>
+					<a href = "listPage?page=${pageMaker.startPage-1 }">&#8882;</a>
+				</li>
+			</c:if>
+			<c:forEach begin = "${pageMaker.startPage }" end = "${pageMaker.endPage }" var = "idx">
+				<li ${idx==pageMaker.cri.page ? 'class=active':'' }>
+					<a href = "${pageContext.request.contextPath }/rd/rdRegister?page=${idx }">${idx }</a>
+				</li>
+			</c:forEach>
+			<c:if test="${pageMaker.next==true }">
+				<li>
+					<a href = "listPage?page=${pageMaker.endPage+1 }">&#8883;</a>
+				</li>
+			</c:if>
+		</ul>
+	</div>
 	<form action = "rdRegister" method = "post">
 		<fieldset>
 			<table id = "house">
@@ -14,14 +60,7 @@
 				<tr>
 					<th class = "subTitle">건물 유형</th>
 					<td class = "contents">
-						<select name = "house">
-							<option value="단독주택">단독주택</option>
-							<option value="다가구주택">다가구주택</option>
-							<option value="상가주택">상가주택</option>
-							<option value="빌라">빌라</option>
-							<option value="오피스텔">오피스텔</option>
-							<option value="아파트">아파트</option>
-						</select>
+						<input type="text" readonly="readonly" value="${htVo.hType }">
 					</td>
 				</tr>
 				<tr>
@@ -47,16 +86,13 @@
 						주소
 					</th>
 					<td class="contents">
-						<input type="text" id="sample5_address" placeholder="주소" name="house">
-						<input type="button" onclick="sample5_execDaumPostcode()" value="주소 검색"><br>
-						<textarea rows="5" cols="70"></textarea>
+						<input type="text" value="${htVo.hAdress }" readonly="readonly" name="house">					
 						<p>
 							<input type="text"><span>동</span>
 						</p>
 						<p>
 							<input type="text"><span>호</span>
 						</p>
-						<div id="map" style="width:300px;height:300px;margin-top:10px;display:none"></div>
 					</td>
 				</tr>
 			</table>
@@ -85,12 +121,6 @@
 					<th rowspan="2" class="subTitle">면적</th>
 					<td rowspan="2" class="contents">전용 면적 <input type = "text"> ㎡</td>
 					<th rowspan="2" class="subTitle">건물 층수</th>
-					<td class ="contents">
-						건물 층수
-						<select>
-							<option>건물 전체 층수</option>     
-						</select>
-					</td>
 				</tr>
 				<tr>
 					<td class="contents">
@@ -144,13 +174,7 @@
 					</td>
 				</tr>
 				<tr>
-					<th class="subTitle">주차여부</th>
-					<td class="contents">
-						<select name="hParking">
-							<option value="0">불가능</option>
-							<option value="1">가능</option>
-						</select>
-					</td>
+					
 					<th class="subTitle">반려동물</th>
 					<td class="contents">
 						<select name="rdPet">
@@ -160,13 +184,6 @@
 					</td>
 				</tr>
 				<tr>
-					<th class="subTitle">엘레베이터</th>
-					<td class="contents">
-						<select name="hElevator">
-							<option value="0">불가능</option>
-							<option value="1">가능</option>
-						</select>
-					</td>
 					<th class="subTitle">베란다 | 발코니</th>
 					<td class="contents">
 						<select name="rdBalcony">
@@ -196,6 +213,12 @@
 				<tr>
 					<th class="title">상세설명</th>
 				</tr>
+				<tr>
+					<th class="subTitle">제목</th>
+					<td class="contents">
+						<input type = "text" name="">
+					</td>
+				</tr>
 			</table>
 			<table id = "imageTable">
 				<tr>
@@ -212,71 +235,4 @@
 		</fieldset>
 	</form>
 </section>
-<script>
-	var themeObj = {
-			bgColor: "#FFFFFF", //바탕 배경색
-			searchBgColor: "#F0AD92", //검색창 배경색
-			contentBgColor: "#FFFFFF", //본문 배경색(검색결과,결과없음,첫화면,검색서제스트)
-			pageBgColor: "#FFFFFF", //페이지 배경색
-			textColor: "#68745C", //기본 글자색
-			queryTextColor: "#FFFFFF", //검색창 글자색
-			postcodeTextColor: "#ED9867", //우편번호 글자색
-			//emphTextColor: "", //강조 글자색
-			outlineColor: "#D8D1CB" //테두리
-		};
-	
-    var mapContainer = document.getElementById('map'), // 지도를 표시할 div
-        mapOption = {
-            center: new daum.maps.LatLng(37.537187, 127.005476), // 지도의 중심좌표
-            level: 5 // 지도의 확대 레벨
-        };
-
-    //지도를 미리 생성
-    var map = new daum.maps.Map(mapContainer, mapOption);
-    //주소-좌표 변환 객체를 생성
-    var geocoder = new daum.maps.services.Geocoder();
-    //마커를 미리 생성
-    var marker = new daum.maps.Marker({
-        position: new daum.maps.LatLng(37.537187, 127.005476),
-        map: map
-    });
-
-
-    function sample5_execDaumPostcode() {
-        new daum.Postcode({
-        	
-            oncomplete: function(data) {
-                var addr = data.address; // 최종 주소 변수
-                
-                // 주소 정보를 해당 필드에 넣는다.
-                document.getElementById("sample5_address").value = addr;
-                // 주소로 상세 정보를 검색
-                geocoder.addressSearch(data.address, function(results, status) {
-                	console.log(data.address);
-                	console.log(results);
-                	console.log(status);
-                    // 정상적으로 검색이 완료됐으면
-                    if (status === daum.maps.services.Status.OK) {
-
-                        var result = results[0]; //첫번째 결과의 값을 활용
-
-                        // 해당 주소에 대한 좌표를 받아서
-                        var coords = new daum.maps.LatLng(result.y, result.x);
-                        // 지도를 보여준다.
-                        mapContainer.style.display = "block";
-                        map.relayout();
-                         // 지도 중심을 변경한다.
-                        map.setCenter(coords);
-                        // 마커를 결과값으로 받은 위치로 옮긴다.
-                        marker.setPosition(coords)
-                    }
-                });
-            },
-            theme: themeObj
-        
-        }).open();
-        
-     
-    }
-</script>
 <%@ include file="../include/subFooter.jsp"%>

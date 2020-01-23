@@ -5,7 +5,7 @@ import java.util.Date;
 
 public class RoomDetailVO {
 	private int rdNo;
-	private int rdFloor;// 층수
+	private String rdFloor;// 층수
 	private int rdType;// 방타입
 	private String rdContract;// 계약타입
 	private String rdArea;// 방면적
@@ -28,8 +28,8 @@ public class RoomDetailVO {
 	private int rdTv;// TV
 	private int rdDesk;// 책상
 	private int rdRefrigerator;// 냉장고
-	private HouseTypeVO house;
-	private MemberVO member;
+	private int house;
+	
 
 	private ArrayList<String> files;
 
@@ -37,10 +37,10 @@ public class RoomDetailVO {
 		super();
 	}
 
-	public RoomDetailVO(int rdNo, int rdFloor, int rdType, String rdContract, String rdArea, int rdAdcost,
+	public RoomDetailVO(int rdNo, String rdFloor, int rdType, String rdContract, String rdArea, int rdAdcost,
 			String rdAdcostItem, Date rdAvailabledate, int rdPet, int rdBalcony, String rdHeating, int rdDeposit,
 			int rdMonthly, int rdCloset, int rdShoecloset, int rdAircon, int rdWasher, int rdInduction, int rdDoorlock,
-			int rdBed, int rdMicrowave, int rdTv, int rdDesk, int rdRefrigerator, HouseTypeVO house, MemberVO member,
+			int rdBed, int rdMicrowave, int rdTv, int rdDesk, int rdRefrigerator, int house,
 			ArrayList<String> files) {
 		super();
 		this.rdNo = rdNo;
@@ -68,7 +68,6 @@ public class RoomDetailVO {
 		this.rdDesk = rdDesk;
 		this.rdRefrigerator = rdRefrigerator;
 		this.house = house;
-		this.member = member;
 		this.files = files;
 	}
 
@@ -80,11 +79,11 @@ public class RoomDetailVO {
 		this.rdNo = rdNo;
 	}
 
-	public int getRdFloor() {
+	public String getRdFloor() {
 		return rdFloor;
 	}
 
-	public void setRdFloor(int rdFloor) {
+	public void setRdFloor(String rdFloor) {
 		this.rdFloor = rdFloor;
 	}
 
@@ -264,20 +263,12 @@ public class RoomDetailVO {
 		this.rdRefrigerator = rdRefrigerator;
 	}
 
-	public HouseTypeVO getHouse() {
+	public int getHouse() {
 		return house;
 	}
 
-	public void setHouse(HouseTypeVO house) {
+	public void setHouse(int house) {
 		this.house = house;
-	}
-
-	public MemberVO getMember() {
-		return member;
-	}
-
-	public void setMember(MemberVO member) {
-		this.member = member;
 	}
 
 	public ArrayList<String> getFiles() {
@@ -297,7 +288,7 @@ public class RoomDetailVO {
 				+ rdCloset + ", rdShoecloset=" + rdShoecloset + ", rdAircon=" + rdAircon + ", rdWasher=" + rdWasher
 				+ ", rdInduction=" + rdInduction + ", rdDoorlock=" + rdDoorlock + ", rdBed=" + rdBed + ", rdMicrowave="
 				+ rdMicrowave + ", rdTv=" + rdTv + ", rdDesk=" + rdDesk + ", rdRefrigerator=" + rdRefrigerator
-				+ ", house=" + house + ", member=" + member + ", files=" + files + "]";
+				+ ", house=" + house + ", files=" + files + "]";
 	}
 	
 	

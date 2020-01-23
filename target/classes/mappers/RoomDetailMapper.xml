@@ -27,11 +27,10 @@
 		<result column="rd_desk" property="rdDesk"/>
 		<result column="rd_refrigerator" property="rdRefrigerator"/>
 		<collection property="house" resultMap="mappers.HouseTypeMapper.HTResult"></collection>
-		<collection property="member" resultMap="mappers.MemberMapper.memberResult"></collection>
 	</resultMap>
 	
 	<select id="selectByMemberId" resultMap="RDResult"> <!-- 내가 올린 방 리스트 -->
-		select * from room_detail r left join `member` m on r.m_id = m.m_id where m.m_id = #{mId}
+		select * from room_detail r left join house_type h on r.h_no = h.h_no where h.m_id = #{mId}
 	</select>	
 	
 	<select id="readByRdNo" resultMap="RDResult"><!-- 방 상세보기 -->
@@ -43,7 +42,7 @@
 		(null,#{rdFloor},#{rdType},#{rdContract},#{rdArea},#{rdAdcost},#{rdAdcostItem},#{rdAvailabledate},
 		#{rdPet},#{rdBalcony},#{rdHeating},#{rdDeposit},#{rdMonthly},#{rdCloset},
 		#{rdShoecloset},#{rdAircon},#{rdWasher},#{rdInduction},#{rdDoorlock},#{rdBed},
-		#{rdMicrowave},#{rdTv},#{rdDesk},#{rdRefrigerator},#{house},#{member})
+		#{rdMicrowave},#{rdTv},#{rdDesk},#{rdRefrigerator},#{house})
 	</insert>
 	
 	
