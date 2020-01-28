@@ -19,21 +19,20 @@
 }
 
 #registTextBox p.registText {
-	border: 3px solid #ff7657;
+	border: 3px solid #ed8967;
 	border-radius: 50px;
 	text-align: center;
 }
 
 #registTextBox p img {
-	background: #fbeed7;
 	width: 100px;
 	height: 50px;
 	vertical-align: middle;
 }
 
 .this{
-	background: #ff7657;
-	color:#fbeed7;	
+	background: #ed8967;
+	color:#fff;	
 }
 
 #registForm{
@@ -48,24 +47,29 @@
 	margin: 10px auto 0;
 	width:30%;
 }
-
+h2{
+	text-align: center;
+	margin:30px; 
+}
 #id{
-	color:#665c84;
+	color:#f0ad92;
 	font-size: 30px;
 	font-weight: bold;
 }
 
 #login{
-	border:0.5px solid #ffba5a;
+	border:0.5px solid #d8d1cb;
 	padding: 8px;
 	border-radius: 5px;
-	background: #ff7657;
-	color:#ffba5a;
+	background: #f0ad92;
+	color:#fff;
 	font-weight: bold;
 	margin-top: 10px;
 	font-size: 16px;
 }
-
+section{
+	height: 90%;
+}
 </style>
 <section>
 	

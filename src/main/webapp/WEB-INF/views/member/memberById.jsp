@@ -81,15 +81,41 @@
 	#secessionBtn a:hover{
 		text-decoration: underline;
 	}
+	#htTable .pick{
+		background: #ed8967;
+	}
+	#htTable .pick td,#htTable .pick td a{
+		color:#fff;
+	}
+	table{
+		width: 100%;
+	}
+	
+	table,td,th{
+		border:0.5px solid #d8d1cb;
+		border-collapse: collapse;
+	}
+	
+	td,th, td a{
+		padding:5px;
+		color:#68745c;
+	}
+	td{
+		text-align: center;
+		font-size: 13px;
+	}
+	section{
+		height: 90%;
+	}
 </style>
 <section>
 	<h1>${vo.mId }님</h1>
 	<input type = "hidden" value="${vo.mId }">
 	<ul>
 		<li>
-			<span class ="read">내정보</span>
+			<span  class="${idx == null? 'read': '' }">내정보</span>
 		</li>
-		<li>
+		<li class="${idx != null? 'read': '' }">
 			<span>내가 올린 방</span>
 		</li>
 		<li>
@@ -124,28 +150,11 @@
 		</p>
 	</div>	
 	
-	<div id = "myRoom" style = "display:none">
-		<table>
-			<tr>
-				<th>NO</th>
-				<th>IMAGE</th>
-				<th>주소</th>
-				<th>계약 상황</th>
-			</tr>
-			<tr>
-				<td>${rdVo.rdNo }</td>
-				<td>
-					<img src="${pageContext.request.contextPath }/upload/displayFile?filename=">
-				</td>
-				<td>
-					${rdVo.house.dong.gu.si.sName } 
-					${rdVo.house.dong.gu.gName } 
-					${rdVo.house.dong.dName }
-					${rdVo.house.hAddress } 
-					${rdVo.rdFloor } 층
-				</td>
-			</tr>
-		</table>
+	<div id = "myRoom" style = "display:none;overflow: hidden;width: 60%;margin: 0 auto;">
+		
+		<div id = "htTable" style="float: left;width: 48%;margin:0 20px;"></div>
+		
+		<div id = "rdTable" style="float: left;width: 45%;"></div>
 	</div>
 	
 	<div id = "likeRoom" style = "display:none">
@@ -153,20 +162,83 @@
 	</div>
 	
 </section>
+<script id="htList" type="text/x-handlebars-template">
+	<h2 style="margin-bottom:20px;color:#68745c;">건물 정보 리스트</h2> 
+	<table>
+		<tr>
+			<th>NO</th>
+			<th>주소</th>
+			<th>건물 타입</th>
+			<th>층수</th>
+			<th>엘레베이터</th>
+			<th>주차장</th>
+			<th>수정 | 삭제</th>
+		</tr>
+		{{#each.}}
+			<tr class="htd" style=" cursor: pointer">
+				<td class = "hNo">{{hNo}}</td>
+				<td>{{hAddress}}</td>
+				<td>{{hType}}</td>
+				<td>{{hFloor}}</td>
+				<td>{{hElevator}}</td>
+				<td>{{hParking}}</td>
+				<td>
+					<a href="${pageContext.request.contextPath}/ht/htModify?{{hNo}}">수정</a> |
+					<a href="${pageContext.request.contextPath}/ht/htRemove?{{hNo}}">삭제</a>
+				</td>
+			</tr>
+		{{/each}}	
+	</table>
+</script>
+
+<script id="rdList" type="text/x-handlebars-template">
+	<h2 style="margin-bottom:20px;color:#68745c;">방 정보 리스트</h2>
+	<table>
+		<tr>
+			<th>NO</th>
+			<th>주소</th>
+			<th>계약타입</th>
+			<th>해당층수</th>
+			<th>관리비</th>
+			<th>입주가능일</th>
+			<th>수정 | 삭제</th>
+		</tr>
+		{{#each.}}
+			<tr>
+				<td class = "rdNo">{{rdNo}}</td>
+				<td>{{rdNo}}</td>
+				<td>{{rdContract}}</td>
+				<td>{{rdFloor}}</td>
+				<td>{{rdAdcost}}</td>
+				<td>{{rdAvailabledate}}</td>
+				<td>
+					<a href="${pageContext.request.contextPath}/rd/rdModify?{{rdNo}}">수정</a> |
+					<a href="${pageContext.request.contextPath}/rd/rdRemove?{{rdNo}}">삭제</a>
+				</td>
+			</tr>
+		{{/each}}	
+	</table>
+</script>
 <script>
+
 	$("ul li span").click(function(){
 		$("ul li span").removeClass("read");
 		$(this).addClass("read");
 		
-		var mId = $("section input[type='hidden']").val();
+		var mId = $("input[type='hidden']").val();
 		
 		$.ajax({
-			url:"/ondongnebang/rd/rdList",
+			url:"${pageContext.request.contextPath}/ht/htListajax/"+mId,
 			type:"get",
-			data:{mId : mId},
 			dataType:"json",
 			success:function(res){
 				console.log(res);
+				$("#htTable").empty();
+				var source = $("#htList").html();
+				var func = Handlebars.compile(source);
+				var str = func(res.htList);
+				$("#htTable").html(str);
+				
 			}
 		})
 		
@@ -187,5 +259,29 @@
 		}
 				
 	})
+	
+	$(document).on("click",".htd",function(){
+		$("tr").removeClass("pick");
+		$(this).addClass("pick");
+		
+		var hNo = $(this).find(".hNo").html();
+		
+		$.ajax({
+			url:"${pageContext.request.contextPath}/rd/rdListAjax/"+hNo,
+			type:"get",
+			dataType:"json",
+			success:function(res){
+				console.log(res);
+				$("#rdTable").empty();
+				var source = $("#rdList").html();
+				var func = Handlebars.compile(source);
+				var str = func(res.rdList);
+				$("#rdTable").html(str);
+				
+			}
+		})
+		
+	})
+	
 </script>
 <%@ include file="../include/subFooter.jsp"%>

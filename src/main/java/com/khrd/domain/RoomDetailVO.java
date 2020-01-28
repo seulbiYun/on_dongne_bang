@@ -10,8 +10,8 @@ public class RoomDetailVO {
 	private String rdContract;// 계약타입
 	private String rdArea;// 방면적
 	private int rdAdcost;// 관리비
-	private String rdAdcostItem; //관리비항목
-	private Date rdAvailabledate;// 입주 가능일
+	private String rdAdcostItem; // 관리비항목
+	private String rdAvailabledate;// 입주 가능일
 	private int rdPet;// 반려동물
 	private int rdBalcony;// 발코니
 	private String rdHeating;// 난방종류
@@ -28,8 +28,9 @@ public class RoomDetailVO {
 	private int rdTv;// TV
 	private int rdDesk;// 책상
 	private int rdRefrigerator;// 냉장고
-	private int house;
-	
+	private int hNo;
+	private String rdTitle;
+	private String rdContents;
 
 	private ArrayList<String> files;
 
@@ -38,10 +39,10 @@ public class RoomDetailVO {
 	}
 
 	public RoomDetailVO(int rdNo, String rdFloor, int rdType, String rdContract, String rdArea, int rdAdcost,
-			String rdAdcostItem, Date rdAvailabledate, int rdPet, int rdBalcony, String rdHeating, int rdDeposit,
+			String rdAdcostItem, String rdAvailabledate, int rdPet, int rdBalcony, String rdHeating, int rdDeposit,
 			int rdMonthly, int rdCloset, int rdShoecloset, int rdAircon, int rdWasher, int rdInduction, int rdDoorlock,
-			int rdBed, int rdMicrowave, int rdTv, int rdDesk, int rdRefrigerator, int house,
-			ArrayList<String> files) {
+			int rdBed, int rdMicrowave, int rdTv, int rdDesk, int rdRefrigerator, int hNo, String rdTitle,
+			String rdContents, ArrayList<String> files) {
 		super();
 		this.rdNo = rdNo;
 		this.rdFloor = rdFloor;
@@ -67,7 +68,9 @@ public class RoomDetailVO {
 		this.rdTv = rdTv;
 		this.rdDesk = rdDesk;
 		this.rdRefrigerator = rdRefrigerator;
-		this.house = house;
+		this.hNo = hNo;
+		this.rdTitle = rdTitle;
+		this.rdContents = rdContents;
 		this.files = files;
 	}
 
@@ -127,11 +130,11 @@ public class RoomDetailVO {
 		this.rdAdcostItem = rdAdcostItem;
 	}
 
-	public Date getRdAvailabledate() {
+	public String getRdAvailabledate() {
 		return rdAvailabledate;
 	}
 
-	public void setRdAvailabledate(Date rdAvailabledate) {
+	public void setRdAvailabledate(String rdAvailabledate) {
 		this.rdAvailabledate = rdAvailabledate;
 	}
 
@@ -263,12 +266,28 @@ public class RoomDetailVO {
 		this.rdRefrigerator = rdRefrigerator;
 	}
 
-	public int getHouse() {
-		return house;
+	public int gethNo() {
+		return hNo;
 	}
 
-	public void setHouse(int house) {
-		this.house = house;
+	public void sethNo(int hNo) {
+		this.hNo = hNo;
+	}
+
+	public String getRdTitle() {
+		return rdTitle;
+	}
+
+	public void setRdTitle(String rdTitle) {
+		this.rdTitle = rdTitle;
+	}
+
+	public String getRdContents() {
+		return rdContents;
+	}
+
+	public void setRdContents(String rdContents) {
+		this.rdContents = rdContents;
 	}
 
 	public ArrayList<String> getFiles() {
@@ -288,8 +307,7 @@ public class RoomDetailVO {
 				+ rdCloset + ", rdShoecloset=" + rdShoecloset + ", rdAircon=" + rdAircon + ", rdWasher=" + rdWasher
 				+ ", rdInduction=" + rdInduction + ", rdDoorlock=" + rdDoorlock + ", rdBed=" + rdBed + ", rdMicrowave="
 				+ rdMicrowave + ", rdTv=" + rdTv + ", rdDesk=" + rdDesk + ", rdRefrigerator=" + rdRefrigerator
-				+ ", house=" + house + ", files=" + files + "]";
+				+ ", hNo=" + hNo + ", rdTitle=" + rdTitle + ", rdContents=" + rdContents + ", files=" + files + "]";
 	}
-	
-	
+
 }

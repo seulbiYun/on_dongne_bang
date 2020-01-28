@@ -26,25 +26,59 @@
 		<result column="rd_tv" property="rdTv"/>
 		<result column="rd_desk" property="rdDesk"/>
 		<result column="rd_refrigerator" property="rdRefrigerator"/>
-		<collection property="house" resultMap="mappers.HouseTypeMapper.HTResult"></collection>
+		<result column="h_no" property="hNo"/>
+		<result column="rd_title" property="rdTitle"/>
+		<result column="td_contents" property="rdContents"/>
 	</resultMap>
-	
-	<select id="selectByMemberId" resultMap="RDResult"> <!-- 내가 올린 방 리스트 -->
-		select * from room_detail r left join house_type h on r.h_no = h.h_no where h.m_id = #{mId}
-	</select>	
 	
 	<select id="readByRdNo" resultMap="RDResult"><!-- 방 상세보기 -->
 		select * from room_detail where rd_no = #{rdNo}
 	</select>
 	
-	<insert id="RoomDetailRegister"> <!-- 빈방 추가 -->
+	<select id="rdList" resultMap="RDResult">
+		select * from room_detail where h_no=#{hNo} order by rd_no desc
+	</select>
+	
+	<insert id="RoomDetailRegister" useGeneratedKeys="true" keyColumn="rd_no" keyProperty="rdNo"> <!-- 빈방 추가 -->
 		insert into room_detail values
 		(null,#{rdFloor},#{rdType},#{rdContract},#{rdArea},#{rdAdcost},#{rdAdcostItem},#{rdAvailabledate},
 		#{rdPet},#{rdBalcony},#{rdHeating},#{rdDeposit},#{rdMonthly},#{rdCloset},
 		#{rdShoecloset},#{rdAircon},#{rdWasher},#{rdInduction},#{rdDoorlock},#{rdBed},
-		#{rdMicrowave},#{rdTv},#{rdDesk},#{rdRefrigerator},#{house})
+		#{rdMicrowave},#{rdTv},#{rdDesk},#{rdRefrigerator},#{rdTitle},#{rdContents},#{hNo})
 	</insert>
 	
+	<select id="rdPage" resultMap="RDResult">
+		select * from room_detail
+		order by rd_no desc
+		limit #{page},#{perPage}
+	</select>
+	
+	<select id="rdCri" resultMap="RDResult">
+		select * from room_detail where h_no = #{hNo}
+		order by rd_no desc
+		limit #{cri.pageStart},#{cri.perPageNum}
+	</select>  
+	
+	<select id="rdCount" resultType="int">
+		select count(rd_no) from room_detail where h_no =#{hNo}
+	</select>
+	
+	<!-- Attach -->
+	<insert id="addAttach">
+	   insert into image(i_fullname, rd_no) values(#{fullname}, #{rdNo})
+	</insert>
+	
+	<delete id="deleteAttachByBno">
+		delete from image where rd_no = #{rdNo}
+	</delete>
+	
+	<delete id="deleteAttachByBnoAndFullname">
+		delete from image where i_fullname = #{fullname} and rd_no = #{rdNo}
+	</delete>
+  	
+  	<insert id="modifyAttach">
+  		insert into image(i_fullname,rd_no) values(#{fullname},#{rdNo});
+  	</insert>
 	
 	
 </mapper>

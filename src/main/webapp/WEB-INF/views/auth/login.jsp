@@ -2,6 +2,10 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../include/subHeader.jsp" %>
 <style>
+	section{
+		height: 90%;
+	}
+
 	fieldset{
 		width: 300px;
 		padding:20px;
@@ -44,6 +48,8 @@
 		color:red;
 		font-size: 13px;
 	}
+	
+	
 </style>
 <section>
 	<div id = "login">

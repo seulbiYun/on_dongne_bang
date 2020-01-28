@@ -3,6 +3,85 @@
 <%@ include file="../include/subHeader.jsp"%>
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=7904280938241876642348cdc418d37c&libraries=services"></script>
+<style>
+	section h1{
+		color:#68745c;
+		text-align: center;
+		margin-top: 50px;
+	}
+	table{
+		width: 800px;
+		margin: 50px auto 0;
+		
+	}
+	table, th, td{
+		border:1px solid #d8d1cb;
+		border-collapse: collapse;
+	}
+	th,td{
+		padding:10px;
+		color:#68745c;
+	}
+	td{
+		text-align: center;
+		font-size: 14px;
+	}
+	td a{
+		color:#68745c;
+	}
+	td a:hover{
+		font-weight: bold;
+	}
+	fieldset{
+		border:0.5px solid #d8d1cb;
+		width: 70%;
+		margin: 50px auto 80px;
+	}
+	.submit{
+		width: 10%;
+		margin: 20px auto;
+		text-align: center;
+	}
+	.submit input{
+		border:0.5px solid #68745;
+		padding: 8px;
+		border-radius: 5px;
+		background: #f0ad92; 
+		color:white;
+		font-weight: bold;
+		margin-top: 10px;
+		font-size: 16px;
+	}
+	fieldset table tr td{
+		text-align: left;
+	}
+	fieldset button,fieldset input[type='button']{
+		padding:3px;
+		border: 0.5px solid #d8d1cb;
+		background: white;
+		border-radius: 3px;
+		color:#68745c;
+	}
+	fieldset select{
+		color:#68745c;
+		padding:5px;
+		outline: none;
+		border-radius: 4px;
+	}
+	fieldset select option{
+		display: block;
+	}
+	fieldset select option:checked{
+		background: #ed9876;
+		color:white;
+		outline: none;
+	}
+	fieldset select option:focus,fieldset select option:hover{
+		background: none;
+		color:#68745c;
+		font-weight: bold;
+	} 
+</style>	
 <section>
 	<h1>${Auth }님 방 올리기</h1>
 	<form action="htRegister" method = "post">
@@ -13,7 +92,7 @@
 					<th colspan="2" class = "title">매물 종류</th>
 				</tr>
 				<tr>
-					<th class = "subTitle">건물 유형</th>
+					<th class = "subTitle"><span style="color:red;font-size:11px;margin-bottom:5px">*</span>건물 유형</th>
 					<td class = "contents">
 						<select name = "hType">
 							<option value="0">건물 타입</option>
@@ -29,11 +108,10 @@
 			</table>
 			<table id = "htDetail">
 				<tr>
-					<th>건물 층수</th>
+					<th><span style="color:red;font-size:11px;margin-bottom:5px">*</span>건물 층수</th>
 				</tr>
 				<tr>
-					<td class ="contents">
-						건물 층수
+					<td class ="contents" style="text-align:center;">
 						<select name="hFloor">
 							<option value="0">건물 전체 층수</option>
 							<c:forEach var="i" begin="1" end="50">
@@ -48,8 +126,7 @@
 					<th colspan="2" class = "title">위치정보</th>
 				</tr>
 				<tr>
-					<th class = "subTitle">
-						주소
+					<th class = "subTitle"><span style="color:red;font-size:11px;margin-bottom:5px">*</span>주소
 					</th>
 					<td class="contents">
 						<input type="text" id="sample5_address" placeholder="주소" name="hAddress" readonly="readonly">
@@ -76,7 +153,7 @@
 					</td>
 				</tr>
 			</table>
-			<p>
+			<p class="submit">
 				<input type = "submit" value="방 정보 입력하기">
 			</p>
 		</fieldset>
@@ -147,17 +224,19 @@
     $("form").submit(function(){
     	var hType = $("select[name='hType']").val();
     	var hAddress = $("input[name='hAddress']").val();
-    	var hFoolr = $("select[name='hFoolr']").val();
+    	var hFoolr = $("select[name='hFloor']").val();
     	if(hType == "0"){
     		alert("건물 타입을 선택해주세요");
     		return false;
     	}
-    	if(hAddress == ""){
-    		alert("주소를 선택해주세요");
-    		return false;
-    	}
+    	
     	if(hFoolr == "0"){
     		alert("건물 층수를 선택해주세요");
+    		return false;
+    	}
+    	
+    	if(hAddress == ""){
+    		alert("주소를 입력해주세요");
     		return false;
     	}
     	

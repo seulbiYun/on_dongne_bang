@@ -19,28 +19,27 @@
 }
 
 #registTextBox p.registText {
-	border: 3px solid #ff7657;
+	border: 3px solid #ed8967;
 	border-radius: 50px;
 	text-align: center;
 }
 
 #registTextBox p img {
-	background: #fbeed7;
 	width: 100px;
 	height: 50px;
 	vertical-align: middle;
 }
 
 .this{
-	background: #ff7657;
-	color:#fbeed7;	
+	background: #ed8967;
+	color:#fff;	
 }
 
 #agree{
 	width: 40%;
 	margin: 0 auto;
 	padding:15px;
-	border: 1px solid #ff7657;
+	border: 1px solid #d8d1cb;
 	text-align: center;
 }
 
@@ -53,7 +52,7 @@
 	width: 40%;
 	margin: 0 auto;
 	padding:20px;
-	border: 1px solid #ff7657;
+	border: 1px solid #d8d1cb;
 }
 
 #registForm form fieldset p{
@@ -70,10 +69,32 @@
 	text-align: center;
 }
 
+.btns button,input{
+	border:0.5px solid #d8d1cb;
+	padding: 5px;
+	border-radius: 5px;
+	background: #fff; 
+	color:#68745c;
+	margin-top: 10px;
+	font-size: 16px; 
+}
+.btns button:hover{
+	font-weight: bold;
+	color:#fff;
+	background: #ed8967;
+}
+
 .err, .err2, .err3{
 	color:red;
 	font-size: 12px;
 	display: none;
+}
+#agree p{
+	margin:20px 0;
+	color:#68745c; 
+}
+#agree textarea{
+	color:#68745c;
 }
 </style>
 <section>

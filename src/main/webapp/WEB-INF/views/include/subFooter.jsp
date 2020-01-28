@@ -4,7 +4,8 @@
 	footer{
 		width: 100%;
 		height: 15%;
-		background: #665c84;
+		background: #ed8967;
+		margin-top: 50px;
 	}
 	
 	#footerMenu{
@@ -24,11 +25,11 @@
 	}
 	
 	#footerMenu ul li a{
-		color:#ffba5a;
+		color:#fff;
 		font-size: 12px;
 		display: block;
 		line-height: 12px;
-		border-right: 1px solid #ffba5a;
+		border-right: 1px solid #fff;
 	}
 	
 	#footerMenu ul li:last-child a{
@@ -36,7 +37,7 @@
 	}
 	
 	hr{
-		border: 1px solid #ffba5a;	
+		border: 1px solid #fff;	
 		margin-bottom: 10px;
 	}
 	
@@ -46,7 +47,7 @@
 	}
 	
 	#footerText p{
-		color:#ffba5a;
+		color:#fff;
 		font-size: 13px;
 		line-height: 20px;	
 	}

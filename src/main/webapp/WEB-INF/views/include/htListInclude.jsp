@@ -1,8 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ include file="../include/subHeader.jsp" %>    
+    pageEncoding="UTF-8"%> 
 <style>
-	section h1{
+	#htList h1{
 		color:#68745c;
 		text-align: center;
 		margin-top: 50px;
@@ -50,12 +49,7 @@
 	.pick td,.pick td a{
 		color:#fff;
 	}
-	section{
-		height: 80%;
-		padding-top:100px;
-	}
 </style>
-<section>
 	<h1>내 방 건물 리스트</h1>
 	<table>
 		<tr>
@@ -72,7 +66,7 @@
 				<td class="hNo">${ht.hNo }</td>
 				<td class="hAddress">${ht.hAddress }</td>
 				<td class ="htType">${ht.hType }</td>
-				<td>${ht.hFloor }</td>
+				<td class="hFloor">${ht.hFloor }</td>
 				<c:if test="${ht.hElevator==0 }">
 					<td>없음</td>
 				</c:if>
@@ -109,5 +103,3 @@
 			</li>
 		</c:if>
 	</ul>
-</section>
-<%@ include file="../include/subFooter.jsp" %>   

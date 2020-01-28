@@ -67,10 +67,10 @@
 	}
 	section{
 		width: 100%;
-		height: 90%;
 	}
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src = "https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.5.3/handlebars.min.js"></script>
 </head>
 <body>
 	<header>
