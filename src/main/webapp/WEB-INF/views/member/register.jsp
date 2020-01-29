@@ -235,7 +235,6 @@
 		})
 	})
 	$("form").submit(function(){
-		$("#signUp").click(function(){
 			var ok = $("#idOk").attr("data-chek");
 			if(ok == "false"){
 				alert("아이디 중복 확인이 필요합니다.");
@@ -307,7 +306,6 @@
 			$(".registText").eq(1).removeClass("this");
 			$(".registText").eq(2).addClass("this");
 			
-		})
 	})
 	
 	

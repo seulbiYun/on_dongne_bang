@@ -27,8 +27,12 @@ import com.khrd.domain.Criteria;
 import com.khrd.domain.HouseTypeVO;
 import com.khrd.domain.MemberVO;
 import com.khrd.domain.PageMaker;
+import com.khrd.domain.RdHtVO;
 import com.khrd.domain.RoomDetailVO;
+import com.khrd.domain.SearchCriteria;
+import com.khrd.persistence.RdHtDAO;
 import com.khrd.service.HouseService;
+import com.khrd.service.MemberService;
 import com.khrd.service.RoomDetailService;
 import com.khrd.util.UploadFileUtils;
 
@@ -41,46 +45,39 @@ public class RoomDetailController {
 	private RoomDetailService service;
 	@Autowired
 	private HouseService hService;
+	@Autowired
+	private MemberService mService;
+	@Autowired
+	private RdHtDAO rhDAO;
 	
 	@Resource(name = "uploadPath") // bean id값으로 주입(DI:dependency injection)
 	private String uploadPath;
 	
-	@ResponseBody
 	@RequestMapping(value = "rdList",method = RequestMethod.GET)
-	public ResponseEntity<List<RoomDetailVO>> MyRoomDetailList(@RequestParam int hNo) {
-		ResponseEntity<List<RoomDetailVO>> entity = null;
+	public void MyRoomDetailList(SearchCriteria scri,Model model) {
+		List<RdHtVO> rhList = rhDAO.searchRdList(scri);
 		
-		try {
-			System.out.println(hNo);
-			List<RoomDetailVO> rdVo = service.rdList(hNo);
-			System.out.println(rdVo);
-			entity = new ResponseEntity<List<RoomDetailVO>>(rdVo,HttpStatus.OK);
-		}catch (Exception e) {
-			e.printStackTrace();
-			entity = new ResponseEntity<List<RoomDetailVO>>(HttpStatus.BAD_REQUEST);
-		}
+		logger.info("=================================scri : " + scri);
 		
-		return entity;
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(scri);
+		pageMaker.setTotalCount(rhDAO.searchRdCount(scri));
+		
+		logger.info("=================================rhList : " + rhList);
+		
+		model.addAttribute("rdList", rhList);
+		model.addAttribute("pageMaker", pageMaker);
+		model.addAttribute("scri", scri);
 	}
 	
 	@ResponseBody
 	@RequestMapping(value = "rdListAjax/{hNo}",method = RequestMethod.GET)
-	public Map<String,Object> rdListAjax(@PathVariable("hNo") int hNo){
+	public List<RoomDetailVO> rdListAjax(@PathVariable("hNo") int hNo){
 		System.out.println(hNo+"====================hNo");
-		Criteria cri = new Criteria();
-		List<RoomDetailVO> rdList = service.rdCri(cri, hNo);
 		
-		System.out.println( rdList +"===================================");
+		List<RoomDetailVO> rdList = service.rdList(hNo);
 		
-		PageMaker pageMaker = new PageMaker();
-		pageMaker.setCri(cri);
-		pageMaker.setTotalCount(service.rdCount(hNo));
-		
-		Map<String,Object> map = new HashMap<String, Object>();
-		map.put("rdList", rdList);
-		map.put("pageMaker",pageMaker);
-		
-		return map;
+		return rdList;
 		
 	}
 	
@@ -122,17 +119,27 @@ public class RoomDetailController {
 		}
 		rdVo.setFiles(files);
 		
+		logger.info("-------------------file : "+rdVo.getFiles());
+		MemberVO vo = mService.memberById(mId);
+		
 		
 				
 		service.RoomDetailRegister(rdVo);
 		
-		model.addAttribute("idx", 1);
+		model.addAttribute("mId", mId);
 		
 		return "redirect:/member/memberById";
 	}
 	
-	
-	
+	@RequestMapping(value = "rdRead",method=RequestMethod.GET)
+	public void rdRead(int rdNo,SearchCriteria scri,Model model) {
+		logger.info("============================rdRead==================");
+		
+		RoomDetailVO vo = service.selectJoinByAttach(rdNo);
+		
+		model.addAttribute("vo", vo);
+		model.addAttribute("scri", scri);
+	}
 	
 	
 	

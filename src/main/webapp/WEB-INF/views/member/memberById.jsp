@@ -97,7 +97,7 @@
 	}
 	
 	td,th, td a{
-		padding:5px;
+		padding:10px;
 		color:#68745c;
 	}
 	td{
@@ -107,15 +107,42 @@
 	section{
 		height: 90%;
 	}
+	
+	.pagination{
+		overflow: hidden;
+		width: 230px;
+		margin: 20px auto;
+	}
+	.pagination li{
+		float: left;
+		width: 30px;
+		text-align: center;
+		
+	}
+	.pagination li a{
+		color:#68745c;
+		cursor: pointer;
+	}
+	
+	.num{
+		border:1.5px solid #d8d1cb;
+		border-radius: 3px;
+		padding:5px;
+	}
+	
+	.pageA{
+		background: #f0ad92;
+		color:white;
+	}
 </style>
 <section>
 	<h1>${vo.mId }님</h1>
 	<input type = "hidden" value="${vo.mId }">
 	<ul>
 		<li>
-			<span  class="${idx == null? 'read': '' }">내정보</span>
+			<span class="read">내정보</span>
 		</li>
-		<li class="${idx != null? 'read': '' }">
+		<li>
 			<span>내가 올린 방</span>
 		</li>
 		<li>
@@ -154,7 +181,7 @@
 		
 		<div id = "htTable" style="float: left;width: 48%;margin:0 20px;"></div>
 		
-		<div id = "rdTable" style="float: left;width: 45%;"></div>
+		<div id = "rdTable" style="float: left;width: 45%;text-align: center;"></div>
 	</div>
 	
 	<div id = "likeRoom" style = "display:none">
@@ -180,7 +207,7 @@
 				<td>{{hAddress}}</td>
 				<td>{{hType}}</td>
 				<td>{{hFloor}}</td>
-				<td>{{hElevator}}</td>
+				<td style="width:35px;">{{hElevator}}</td>
 				<td>{{hParking}}</td>
 				<td>
 					<a href="${pageContext.request.contextPath}/ht/htModify?{{hNo}}">수정</a> |
@@ -189,6 +216,8 @@
 			</tr>
 		{{/each}}	
 	</table>
+	<ul class = "pagination">		
+	</ul>
 </script>
 
 <script id="rdList" type="text/x-handlebars-template">
@@ -196,7 +225,6 @@
 	<table>
 		<tr>
 			<th>NO</th>
-			<th>주소</th>
 			<th>계약타입</th>
 			<th>해당층수</th>
 			<th>관리비</th>
@@ -206,7 +234,6 @@
 		{{#each.}}
 			<tr>
 				<td class = "rdNo">{{rdNo}}</td>
-				<td>{{rdNo}}</td>
 				<td>{{rdContract}}</td>
 				<td>{{rdFloor}}</td>
 				<td>{{rdAdcost}}</td>
@@ -220,7 +247,55 @@
 	</table>
 </script>
 <script>
+	function changePagination(pageMaker){
+		var str  = "";
+		if(pageMaker.prev){
+			str+= "<li>"
+				  +'<a data-page="'+(pageMaker.startPage-1)+ '">&#8882;</a>'
+				  +"</li>";					
+		}
+		
+		
+		for(var idx = pageMaker.startPage; idx <= pageMaker.endPage; idx++){
+			str+="<li ${idx==pageMaker.cri.page ? 'class=active':'' }>"
+				+'<a data-page="'+ idx +'"class="num">'+ idx +'</a>'
+				+"</li>"
+		}
+		
+		if(pageMaker.next){
+			str+= "<li>"
+				  +'<a data-page="'+ (pageMaker.endPage+1) + '">&#8883;</a>'
+				  +"</li>";					
+		}
+		
+		$("ul.pagination").append(str);
+		
+	}
+	$(document).on("click",".pagination a",function(){
+		
+		var mId = $("input[type='hidden']").val();
+		var page = $(this).attr("data-page");
+		$.ajax({
+			url:"${pageContext.request.contextPath}/ht/htListajax/"+mId+"?page="+page,
+			type:"get",
+			dataType:"json",
+			success:function(res){
+				console.log(res);
+				$("#htTable").empty();
+				var source = $("#htList").html();
+				var func = Handlebars.compile(source);
+				var str = func(res.htList);
+				$("#htTable").html(str);
+				changePagination(res.pageMaker);				
+			}
+		})
+		return false;
+		
+		
+		
+	})
 
+	
 	$("ul li span").click(function(){
 		$("ul li span").removeClass("read");
 		$(this).addClass("read");
@@ -238,6 +313,7 @@
 				var func = Handlebars.compile(source);
 				var str = func(res.htList);
 				$("#htTable").html(str);
+				changePagination(res.pageMaker);
 				
 			}
 		})
@@ -273,10 +349,17 @@
 			success:function(res){
 				console.log(res);
 				$("#rdTable").empty();
-				var source = $("#rdList").html();
-				var func = Handlebars.compile(source);
-				var str = func(res.rdList);
-				$("#rdTable").html(str);
+				
+				if(res.length == 0){
+					$("#rdTable").html($("<sapn>").text("등록된 방 정보가 없습니다.")
+										.css("color","#ed8967").css("display","block")
+										.css("margin","20px auto"));
+				}else{
+					var source = $("#rdList").html();
+					var func = Handlebars.compile(source);
+					var str = func(res);
+					$("#rdTable").html(str);
+				}	
 				
 			}
 		})

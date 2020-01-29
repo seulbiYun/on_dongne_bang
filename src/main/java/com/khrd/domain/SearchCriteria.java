@@ -1,15 +1,15 @@
 package com.khrd.domain;
 
 public class SearchCriteria extends Criteria {
-	private String searchType;
 	private String keyword;
 
-	public String getSearchType() {
-		return searchType;
+	public SearchCriteria() {
+		super();
 	}
 
-	public void setSearchType(String searchType) {
-		this.searchType = searchType;
+	public SearchCriteria(String keyword) {
+		super();
+		this.keyword = keyword;
 	}
 
 	public String getKeyword() {
@@ -22,7 +22,7 @@ public class SearchCriteria extends Criteria {
 
 	@Override
 	public String toString() {
-		return "SearchCriteria [searchType=" + searchType + ", keyword=" + keyword + "]";
+		return "SearchCriteria [ keyword=" + keyword + "]";
 	}
 
 }

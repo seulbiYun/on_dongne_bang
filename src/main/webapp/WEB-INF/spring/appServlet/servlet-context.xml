@@ -45,6 +45,8 @@
 	<interceptors>
 		<interceptor>
 			<mapping path="/member/memberById"/>
+			<mapping path="/rd/*"/>
+			<mapping path="/ht/*"/>
 			<beans:ref bean="authInterseptor"/>
 		</interceptor>
 	</interceptors>

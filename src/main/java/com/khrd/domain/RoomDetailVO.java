@@ -28,9 +28,10 @@ public class RoomDetailVO {
 	private int rdTv;// TV
 	private int rdDesk;// 책상
 	private int rdRefrigerator;// 냉장고
-	private int hNo;
 	private String rdTitle;
 	private String rdContents;
+	private int hNo;
+	
 
 	private ArrayList<String> files;
 
@@ -38,11 +39,12 @@ public class RoomDetailVO {
 		super();
 	}
 
+	
 	public RoomDetailVO(int rdNo, String rdFloor, int rdType, String rdContract, String rdArea, int rdAdcost,
 			String rdAdcostItem, String rdAvailabledate, int rdPet, int rdBalcony, String rdHeating, int rdDeposit,
 			int rdMonthly, int rdCloset, int rdShoecloset, int rdAircon, int rdWasher, int rdInduction, int rdDoorlock,
-			int rdBed, int rdMicrowave, int rdTv, int rdDesk, int rdRefrigerator, int hNo, String rdTitle,
-			String rdContents, ArrayList<String> files) {
+			int rdBed, int rdMicrowave, int rdTv, int rdDesk, int rdRefrigerator, String rdTitle, String rdContents,
+			int hNo, ArrayList<String> files) {
 		super();
 		this.rdNo = rdNo;
 		this.rdFloor = rdFloor;
@@ -68,11 +70,13 @@ public class RoomDetailVO {
 		this.rdTv = rdTv;
 		this.rdDesk = rdDesk;
 		this.rdRefrigerator = rdRefrigerator;
-		this.hNo = hNo;
 		this.rdTitle = rdTitle;
 		this.rdContents = rdContents;
+		this.hNo = hNo;
 		this.files = files;
 	}
+
+
 
 	public int getRdNo() {
 		return rdNo;

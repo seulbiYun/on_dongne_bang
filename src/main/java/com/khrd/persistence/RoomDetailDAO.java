@@ -5,6 +5,7 @@ import java.util.List;
 import com.khrd.domain.Criteria;
 import com.khrd.domain.HouseTypeVO;
 import com.khrd.domain.RoomDetailVO;
+import com.khrd.domain.SearchCriteria;
 
 public interface RoomDetailDAO {
 	//내가 올린 방 리스트

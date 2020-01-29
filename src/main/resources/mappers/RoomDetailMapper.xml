@@ -29,6 +29,9 @@
 		<result column="h_no" property="hNo"/>
 		<result column="rd_title" property="rdTitle"/>
 		<result column="td_contents" property="rdContents"/>
+		<collection property="files" ofType="java.lang.String" javaType = "list">
+			<result column="i_fullName"/>
+		</collection>
 	</resultMap>
 	
 	<select id="readByRdNo" resultMap="RDResult"><!-- 방 상세보기 -->
@@ -63,6 +66,8 @@
 		select count(rd_no) from room_detail where h_no =#{hNo}
 	</select>
 	
+
+	
 	<!-- Attach -->
 	<insert id="addAttach">
 	   insert into image(i_fullname, rd_no) values(#{fullname}, #{rdNo})
@@ -80,5 +85,8 @@
   		insert into image(i_fullname,rd_no) values(#{fullname},#{rdNo});
   	</insert>
 	
+	<select id="selectJoinByAttach" resultMap="RDResult">
+		select * from room_detail as r join image as i on r.rd_no = i.rd_no where r.rd_no = #{rdNo}
+	</select>
 	
 </mapper>

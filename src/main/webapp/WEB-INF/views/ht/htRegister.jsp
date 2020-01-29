@@ -57,7 +57,7 @@
 	}
 	fieldset button,fieldset input[type='button']{
 		padding:3px;
-		border: 0.5px solid #d8d1cb;
+		border: 1px solid #d8d1cb;
 		background: white;
 		border-radius: 3px;
 		color:#68745c;

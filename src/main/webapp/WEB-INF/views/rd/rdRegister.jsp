@@ -25,9 +25,9 @@
 	fieldset table tr td{
 		text-align: left;
 	}
-	fieldset button,fieldset input[type='button']{
+	fieldset button{
 		padding:3px;
-		border: 0.5px solid #d8d1cb;
+		border: 1px solid #d8d1cb;
 		background: white;
 		border-radius: 3px;
 		color:#68745c;
@@ -57,14 +57,14 @@
 		padding-top:230px;
 	}
 	.contents input[type="button"]{
-		border:0.5px solid #d8d1cb;
+		border:1px solid #d8d1cb;
 		background: #fff;
 		color:#68745c;
 		padding:3px;
 		border-radius: 3px;
 		outline:none;
 		cursor: pointer;
-		z-index: 1;
+		margin: 0 5px;
 	}
 	.contents input[type="button"].click{
 		background: #f0ad92;
@@ -183,8 +183,10 @@
 					<tr>
 						<th class="subTitle"><span style="color:red;font-size:11px;margin-bottom:5px">*</span>입주 가능일</th>
 						<td colspan="3" class="contents">
-							<input type="button" id="now" name="rdAvailabledate" class="data" value="즉시 입주">
-							<input type="button" id="tongue" name="rdAvailabledate" class="data" value="날짜 협의">
+							<input type="button" id="now" value="즉시 입주" name="date">
+							<input type = "hidden" id="now2" name="rdAvailabledate">
+							<input type="button" id="tongue" value="날짜 협의" name="date">
+							<input type = "hidden" id="tongue2" name="rdAvailabledate">
 							<input type = "button" id="pickDate" value="날짜 선택">
 							<input type="date" id="datapick" name="rdAvailabledate" style="display: none;">
 						</td>
@@ -326,6 +328,56 @@
 		
 	})
 	
+	$("#now").click(function(){
+		$(this).toggleClass("click");
+		var cla = $("#tongue").attr("class");
+		if(cla == "click"){
+			$("#tongue").removeClass("click");
+			$("input:hidden[id='tongue2']").val("");
+		}
+		var btnNow = $(this).val();
+		var thiscla = $(this).attr("class");
+		if(thiscla=="click"){
+			$("input:hidden[id='now2']").val(btnNow);
+		}else{
+			$("input:hidden[id='now2']").val("");
+		}
+		
+	})
+	
+	$("#tongue").click(function(){
+		$(this).toggleClass("click");
+		
+		var cla = $("#now").attr("class");
+		
+		if(cla =="click"){
+			$("#now").removeClass("click");
+			$("input:hidden[id='now2']").val("");
+		}
+		
+		var btnTongue = $(this).val();
+		var thiscla = $(this).attr("class");
+		if(thiscla=="click"){
+			$("input:hidden[id='tongue2']").val(btnTongue);
+		}else{
+			$("input:hidden[id='tongue2']").val("");
+		}
+		
+	})
+	
+	$("input[name='date']").click(function(){
+		$("#pickDate").css("display","inline"); //button
+		$("#datapick").css("display","none"); //input
+	})
+	
+	$("#pickDate").click(function(){
+		$("input[name='date']").removeClass("click");
+		$("input:hidden[id='tongue2']").val("");
+		$("input:hidden[id='now2']").val("");
+		$(this).css("display","none");
+		$("#datapick").css("display","inline");
+	})
+	
 	$("#wor").click(function(){
 		if($("#jeon").attr("class")=="pMoney"){
 			$("#jeon").removeClass("pMoney");
@@ -358,20 +410,7 @@
 			$(this).removeAttr("checked");
 		}
 	})
-	
-	$(".data").click(function(){
-		$(".data").removeClass("click");
-		$(this).addClass("click");
-		$("#pickDate").css("display","inline"); //button
-		$("#datapick").css("display","none"); //input
-	})
-	
-	$("#pickDate").click(function(){
-		$(".data").removeClass("click");
-		$(this).css("display","none");
-		$("#datapick").css("display","inline");
-	})
-	
+			
 	$("input[name='imgFiles']").change(function(){
 		$("#roomImg").empty();
 		
@@ -388,6 +427,7 @@
             }
          }
 	})
+
 	
 	$("button[name='Item']").click(function(){
 		$(this).toggleClass("pickItem");
@@ -470,6 +510,17 @@
 			return false;
 		}
 		
+		var rdAvailabledate = $("input[name='rdAvailabledate']").val();
+		if(rdAvailabledate == ""){
+			alert("입주가능일을 입력하세요");
+			return false;
+		}
+		
+		var rdDeposit = $("inptu[name='rdDeposit']").val();
+		if(rdDeposit == ""){
+			alert("보증금을 입력하세요");
+			return false;
+		}
 		
 	})
 </script>

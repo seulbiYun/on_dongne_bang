@@ -77,10 +77,11 @@
 			<button id = "searchBtn">방 찾기</button>
 		</p>
 	</div>
-	
-	<div id ="easyRoomFinder">
-		
-	</div>
-	
 </section>
+<script>
+	$("#searchBtn").click(function(){
+		var keyword = $("input[name='keyword']").val();
+		location.href="${pageContext.request.contextPath}/rd/rdList?keyword="+keyword;
+	})
+</script>
 <%@ include file="include/footer.jsp"%>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mappers.RdHtMapper">
+	<resultMap type="RdHtVO" id="RdHtResult">
+		<association property="rdVO" resultMap="mappers.RoomDetailMapper.RDResult"/>
+		<association property="htVO" resultMap="mappers.HouseTypeMapper.HTResult"/>
+	</resultMap>
+	
+	<select id="searchRdList" resultMap="RdHtResult">
+		select * from house_type as h join room_detail as r on h.h_no = r.h_no 
+		join image as i on r.rd_no = i.rd_no where h.h_address like CONCAT('%',#{keyword},'%')
+		group by i.rd_no order by r.rd_no desc
+	</select>
+	
+	<select id="searchRdCount" resultType="int">
+		select count(rd_no) from house_type as h join room_detail as r on h.h_no = r.h_no
+		where h.h_address like CONCAT('%',#{keyword},'%')
+	</select>
+</mapper>

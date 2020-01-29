@@ -1,5 +1,9 @@
 package com.khrd.controller;
 
+import java.util.List;
+
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,8 +16,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.khrd.domain.Criteria;
+import com.khrd.domain.HouseTypeVO;
 import com.khrd.domain.MemberVO;
+import com.khrd.domain.PageMaker;
+import com.khrd.service.HouseService;
 import com.khrd.service.MemberService;
+import com.khrd.service.RoomDetailService;
 
 @Controller
 @RequestMapping("/member/*")
@@ -22,6 +31,10 @@ public class MemberController {
 	
 	@Autowired
 	private MemberService service;
+	@Autowired
+	private HouseService hService;
+	@Autowired
+	private RoomDetailService rService;
 	
 	//회원 가입 ----------------------------------------------------------------------------------------
 	@RequestMapping(value = "register",method=RequestMethod.GET)
@@ -78,11 +91,19 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value = "memberById",method=RequestMethod.GET)
-	public void memberRead(String mId,Model model) {
-		logger.info("--------------------- memberRead --------------------"+mId);
-		
+	public void memberRead(HttpSession session, Criteria cri,Model model) {
+		logger.info("--------------------- memberRead --------------------");
+		String mId = (String) session.getAttribute("Auth");
 		MemberVO vo = service.memberById(mId);
+		List<HouseTypeVO> htList = hService.htCri(cri,mId);
+		System.out.println(htList);
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(cri);
+		pageMaker.setTotalCount(hService.htCount(mId));
 		
 		model.addAttribute("vo", vo);
+		model.addAttribute("htList", htList);
+		model.addAttribute("pageMaker", pageMaker);
+		model.addAttribute("idx", 1);
 	}
 }

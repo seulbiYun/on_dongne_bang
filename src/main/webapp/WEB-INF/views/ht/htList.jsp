@@ -30,18 +30,18 @@
 	td a:hover{
 		font-weight: bold;
 	}
-	#htList .pagination{
+	.pagination{
 		overflow: hidden;
 		width: 230px;
 		margin: 20px auto;
 	}
-	#htList .pagination li{
+	.pagination li{
 		float: left;
 		width: 30px;
 		text-align: center;
 		
 	}
-	#htList .pagination li a{
+	.pagination li a{
 		color:#68745c;
 	}
 	.pick{
@@ -53,6 +53,16 @@
 	section{
 		height: 80%;
 		padding-top:100px;
+	}
+	
+	#rdInsert{
+		border:1px solid #d8d1cb;
+		border-radius: 5px;
+		padding:10px;
+		background: #f0ad92;
+		color:#fff;
+		margin: 0 auto;
+		display: block;
 	}
 </style>
 <section>
@@ -95,19 +105,32 @@
 	<ul class = "pagination">
 		<c:if test="${pageMaker.prev==true }">
 			<li>
-				<a href = "rdRegister?page=${pageMaker.startPage-1 }">&#8882;</a>
+				<a href = "${pageContext.request.contextPath }/ht/htList?page=${pageMaker.startPage-1 }">&#8882;</a>
 			</li>
 		</c:if>
 		<c:forEach begin = "${pageMaker.startPage }" end = "${pageMaker.endPage }" var = "idx">
 			<li ${idx==pageMaker.cri.page ? 'class=active':'' }>
-				<a href = "${pageContext.request.contextPath }/rd/rdRegister?page=${idx }">${idx }</a>
+				<a href = "${pageContext.request.contextPath }/ht/htList?page=${idx }">${idx }</a>
 			</li>
 		</c:forEach>
 		<c:if test="${pageMaker.next==true }">
 			<li>
-				<a href = "rdRegister?page=${pageMaker.endPage+1 }">&#8883;</a>
+				<a href = "${pageContext.request.contextPath }/ht/htList?page=${pageMaker.endPage+1 }">&#8883;</a>
 			</li>
 		</c:if>
 	</ul>
+	
+	<button id = "rdInsert">방 정보 등록</button>
 </section>
+<script>
+	$(".htd").click(function(){
+		var hNo = $(this).find(".hNo").text();
+		location.href="${pageContext.request.contextPath}/ht/htRead?hNo="+hNo;
+	
+	})
+	
+	$("#rdInsert").click(function(){
+		location.href="${pageContext.request.contextPath}/rd/rdRegister";
+	})
+</script>
 <%@ include file="../include/subFooter.jsp" %>   

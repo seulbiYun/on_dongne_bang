@@ -46,8 +46,8 @@ public class HouseTypeController {
 	
 	@ResponseBody
 	@RequestMapping(value = "htListajax/{mId}",method = RequestMethod.GET)
-	public Map<String,Object> htListajax(@PathVariable("mId") String mId){
-		Criteria cri = new Criteria();
+	public Map<String,Object> htListajax(@PathVariable("mId") String mId,Criteria cri){
+		//Criteria cri = new Criteria();
 		List<HouseTypeVO> htList = hService.htCri(cri,mId);
 			
 		System.out.println(htList);
@@ -58,7 +58,6 @@ public class HouseTypeController {
 		Map<String,Object> map = new HashMap<String, Object>();
 		map.put("htList", htList);
 		map.put("pageMaker", pageMaker);
-		
 		
 		return map;
 	}
@@ -85,10 +84,18 @@ public class HouseTypeController {
 	
 	@RequestMapping(value = "htRegister",method = RequestMethod.POST)
 	public String registPost(HouseTypeVO htVo) {
-		logger.info("--------------------rdRegister GET-----------------");
+		logger.info("--------------------rdRegister POST-----------------");
 	
 		hService.htRegister(htVo);
 		
 		return "redirect:/ht/htList";
+	}
+	
+	@RequestMapping(value = "htRead",method=RequestMethod.GET)
+	public void htRead(int hNo,Model model) {
+		logger.info("--------------------htRead GET-----------------");
+		 HouseTypeVO vo = hService.selectByHNo(hNo);
+		 
+		 model.addAttribute("vo", vo);
 	}
 }

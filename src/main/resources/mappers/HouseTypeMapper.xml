@@ -12,7 +12,7 @@
 	</resultMap>
 	
 	<insert id="htRegister">
-		insert into house_type values (0,#{hType},#{hAddress},#{hElevator},#{hParking},#{hFloor},#{member})
+		insert into house_type values (null,#{hType},#{hAddress},#{hElevator},#{hParking},#{hFloor},#{member})
 	</insert>
 	
 	<select id="htList" resultMap="HTResult">
