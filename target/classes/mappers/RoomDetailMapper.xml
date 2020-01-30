@@ -30,7 +30,7 @@
 		<result column="rd_title" property="rdTitle"/>
 		<result column="td_contents" property="rdContents"/>
 		<collection property="files" ofType="java.lang.String" javaType = "list">
-			<result column="i_fullName"/>
+			<result column="i_fullname"/>
 		</collection>
 	</resultMap>
 	

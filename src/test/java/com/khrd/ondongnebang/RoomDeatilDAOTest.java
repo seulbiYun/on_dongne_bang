@@ -21,7 +21,7 @@ public class RoomDeatilDAOTest {
 	@Autowired
 	private RoomDetailDAO dao;
 	
-	//@Test
+	@Test
 	public void testInsert() {
 		ArrayList<String> files = new ArrayList<String>();
 		
@@ -37,7 +37,7 @@ public class RoomDeatilDAOTest {
 				1,1,"개별 난방",200000000,0,1,
 				1,1,1,1,1,1,
 				1,1,1,1,"넓고 햇살 잘드는 방",
-				"남향으로 해가 잘드네여하하하하하이렇게 좋은 집이  있다니 당장 계약해야겠다는 마음이 확드네요!!",15 ,
+				"남향으로 해가 잘드네여하하하하하이렇게 좋은 집이  있다니 당장 계약해야겠다는 마음이 확드네요!!",1 ,
 				files);
 		dao.RoomDetailRegister(vo);
 		for(String file : vo.getFiles()) {
@@ -45,7 +45,7 @@ public class RoomDeatilDAOTest {
 		}
 	}
 	
-	@Test
+	//@Test
 	public void testRead() {
 		dao.selectJoinByAttach(10);
 	}

@@ -38,6 +38,8 @@ public class RoomDetailDAOImpl implements RoomDetailDAO {
 
 	@Override
 	public void addAttach(String fullname,int rdNo) {
+		System.out.println(fullname);
+		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("fullname",fullname);
 		map.put("rdNo",rdNo);
